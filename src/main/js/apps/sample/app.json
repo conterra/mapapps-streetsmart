@@ -35,8 +35,7 @@
             "share-link",
             "omnisearch",
             "locator-store",
-            "toc",
-            "sample_helloworld"
+            "toc"
         ],
         "require": [
             "${app}.app"
