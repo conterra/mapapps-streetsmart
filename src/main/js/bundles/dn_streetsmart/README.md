@@ -32,11 +32,10 @@ To make the functions of this bundle available to the user, the following tool c
             "database": "Nokia"
         },
         "panoramaViewerInstance": {
-            "type": "lookAtCoordinate",
-            "coordinate": [
-                356491.961,
-                5645458.686
-            ]
+            "method": "lookAtCoordinate",
+            "parameters": {
+                "coordinate": [356491.961,5645458.686]
+            }
         }
     },
     "streetSmartLayerId": null,
@@ -130,10 +129,7 @@ To make the functions of this bundle available to the user, the following tool c
 {
     "method": "lookAtCoordinate",
     "parameters": {
-        "coordinate": {
-            356491.961,
-            5645458.686
-        }
+        "coordinate": [356491.961,5645458.686]
     }
 }
 ```
