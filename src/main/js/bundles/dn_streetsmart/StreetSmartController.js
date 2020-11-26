@@ -134,33 +134,44 @@ export default class StreetSmartController {
     _panoramaViewerCustomMethod(panorama) {
         const streetSmartProperties = this.#streetSmartProperties;
         const panoramaViewerInstance = streetSmartProperties.panoramaViewerInstance;
-        if (panoramaViewerInstance && panoramaViewerInstance.type && (panoramaViewerInstance.coordinate || panoramaViewerInstance.imageId)) {
+        if (panoramaViewerInstance && panoramaViewerInstance.method && panoramaViewerInstance.parameters) {
             const srs = panorama.props.recording.srs;
 
-            let coordinate = panoramaViewerInstance.coordinate;
-            let imageId = panoramaViewerInstance.imageId;
-            if (!coordinate) {
-                const coordsFloat = panorama.props.recording.xyz;
-                coordinate = [coordsFloat[0], coordsFloat[1], coordsFloat[2]];
-            }
-            if (!imageId) {
-                imageId = panorama.props.recording.id;
-            }
-            switch (panoramaViewerInstance.type) {
+            let coordinate = panoramaViewerInstance.parameters.coordinate;
+            let imageId = panoramaViewerInstance.parameters.imageId;
+            let query = panoramaViewerInstance.parameters.query;
+            switch (panoramaViewerInstance.method) {
+                case "lookAtCoordinate":
+                    if(!coordinate) {
+                        return;
+                    }
+                    panorama.lookAtCoordinate(coordinate, srs);
+                    const recording = panorama.props.recording;
+                    this._updateMarkerPosition(recording);
+                    break;
                 case "openByCoordinate":
+                    if(!coordinate) {
+                        return;
+                    }
                     panorama.openByCoordinate(coordinate, srs).then(recording => {
                         this._updateMarkerPosition(recording);
                     });
                     break;
-                case "openByImageId":
-                    panorama.openByImageId(imageId, srs).then(recording => {
+                case "openByAddress":
+                    if(!query) {
+                        return;
+                    }
+                    panorama.openByAddress(query, srs).then(recording => {
                         this._updateMarkerPosition(recording);
                     });
                     break;
-                case "lookAtCoordinate":
-                    panorama.lookAtCoordinate(coordinate, srs);
-                    const recording = panorama.props.recording;
-                    this._updateMarkerPosition(recording);
+                case "openByImageId":
+                    if(!imageId) {
+                        return;
+                    }
+                    panorama.openByImageId(imageId, srs).then(recording => {
+                        this._updateMarkerPosition(recording);
+                    });
                     break;
             }
         }

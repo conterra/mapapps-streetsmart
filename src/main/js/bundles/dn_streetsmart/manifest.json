@@ -119,13 +119,7 @@
                         "locale": "de",
                         "database": "Nokia"
                     },
-                    "panoramaViewerInstance": {
-                        "type": "lookAtCoordinate",
-                        "coordinate": [
-                            356491.961,
-                            5645458.686
-                        ]
-                    }
+                    "panoramaViewerInstance": null
                 },
                 "streetSmartLayerId": null,
                 "markerSymbols": {
