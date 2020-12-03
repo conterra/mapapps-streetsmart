@@ -21,21 +21,19 @@
             "theme-autumn",
             "map-init",
             "map-preload-2D",
-            "map-preload-3D",
             "toolset",
             "banner",
             "basemaptoggler",
-            "custominfo",
-            "viewmodeswitcher",
             "mapnavigation",
             "popups-default",
             "scalebar",
             "locateme",
-            "printing",
-            "share-link",
             "omnisearch",
             "locator-store",
-            "toc"
+            "toc",
+            "coordinateviewer",
+            "toolrules",
+            "dn_streetsmart"
         ],
         "require": [
             "${app}.app"
@@ -45,6 +43,32 @@
         ]
     },
     "bundles": {
+        "dn_streetsmart": {
+            "Config": {
+                "streetSmartProperties": {
+                    "apiKey": "",
+                    "username": "",
+                    "password": "",
+                    "srs": "EPSG:25832",
+                    "locale": "de",
+                    "overlayDrawDistance": 30,
+                    "addressSettings": {
+                        "locale": "de",
+                        "database": "Nokia"
+                    },
+                    "panoramaViewerInstance": {
+                        "method": "lookAtCoordinate",
+                        "parameters": {
+                            "coordinate": [
+                                359820,
+                                5647699
+                            ]
+                        }
+                    }
+                },
+                "streetSmartLayerId": "test"
+            }
+        },
         "banner": {
             "BannerWidget": {
                 "label": "Developer Network",
@@ -125,34 +149,77 @@
             "Config": {
                 "basemaps": [
                     {
-                        "id": "esri_street",
-                        "title": "Straßenkarte (grau)",
-                        "thumbnailUrl": "resource('${app}:/images/streets.png')",
-                        "basemap": "gray-vector"
-                    },
-                    {
-                        "id": "esri_hybrid",
-                        "title": "Luftbild (hybrid)",
-                        "thumbnailUrl": "resource('${app}:/images/hybrid.png')",
-                        "basemap": "hybrid"
-                    },
-                    {
-                        "id": "esri_topo",
-                        "title": "Topographische Karte",
-                        "thumbnailUrl": "resource('${app}:/images/topo.png')",
+                        "id": "hybrid",
+                        "title": "Hybride Ansicht",
+                        "description": "Hybride Ansicht Lufbild und Stra\u00DFen",
                         "selected": true,
                         "basemap": {
                             "type": "GROUP",
                             "layers": [
                                 {
-                                    "basemap": "topo-vector",
-                                    "type": "AGS_VECTORTILE",
-                                    "url": "https://www.arcgis.com/sharing/rest/content/items/6f65bc1351b7411588a8cb43fe23dad7/resources/styles/root.json"
+                                    "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay",
+                                    "copyright": "Land NRW (2019) Datenlizenz Deutschland - Namensnennung - Version 2.0 (www.govdata.de/dl-de/by-2-0)",
+                                    "type": "WMS",
+                                    "version": "1.3.0",
+                                    "queryable": false,
+                                    "format": "image/png32",
+                                    "sublayers": [
+                                        {
+                                            "name": "nw_dop_overlay_autobahn"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_autobahn_beschriftung_1"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_autobahn_beschriftung_2"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_bundesstrassen"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_bundesstrassen_beschriftung_1"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_bundesstrassen_beschriftung_2"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_landstrassen"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_landstrassen_beschriftung"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_kreisstrassen"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_kreisstrassen_beschriftung"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_ortsstrassen"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_ortsstrassen_beschriftung"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_strassen_bau"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_unbefahrbare_wege"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_faehren"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_geonamen"
+                                        },
+                                        {
+                                            "name": "nw_dop_overlay_hausnummern"
+                                        }
+                                    ]
                                 },
                                 {
-                                    "id": "esri_topo1",
-                                    "type": "AGS_TILED",
-                                    "url": "https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer"
+                                    "type": "AGS_IMAGE",
+                                    "url": "https://geoportal.stadt-koeln.de/arcgis/rest/services/Luftbilder/Luftbild_2018/ImageServer/"
                                 }
                             ]
                         }
@@ -473,11 +540,27 @@
                 "view": {
                     "viewmode": "2D",
                     "center": {
-                        "x": 774853,
-                        "y": 6610677,
-                        "spatialReference": 3857
+                        "x": 359720,
+                        "y": 5647699,
+                        "spatialReference": {
+                            "wkid": 25832,
+                            "latestWkid": 25832
+                        }
                     },
-                    "scale": 140000
+                    "scale": 2500,
+                    "constraints": {
+                        "geometry": {
+                            "type": "extent",
+                            "xmin": 359392.08,
+                            "ymin": 5647509.66,
+                            "xmax": 359856.42,
+                            "ymax": 5647939.72,
+                            "spatialReference": {
+                                "wkid": 25832,
+                                "latestWkid": 25832
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -521,13 +604,6 @@
                                 }
                             },
                             {
-                                "widgetRole": "printing",
-                                "window": {
-                                    "dockable": false,
-                                    "dockingBar": null
-                                }
-                            },
-                            {
                                 "widgetRole": "banner",
                                 "sublayout": [
                                     "mobile_portrait"
@@ -541,7 +617,7 @@
         },
         "toc": {
             "Config": {
-                "showBasemaps" : true
+                "showBasemaps": true
             }
         },
         "toolset": {
@@ -555,7 +631,7 @@
                             "zoomOutTool",
                             "compassTool",
                             "restoreInitialViewTool",
-                            "viewmodeSwitcherTool"
+                            "streetSmartToggleTool"
                         ],
                         "registerWidget": {
                             "widgetRole": "mapview_tools"
@@ -563,25 +639,14 @@
                         "container": "ignore",
                         "windowType": "container",
                         "cssClass": "muted"
-                    },
-                    {
-                        "id": "drawer_left",
-                        "title": "Werkzeuge",
-                        "cssClass": "ct-main-app-menu",
-                        "tools": [
-                            "tocToggleTool",
-                            "printingToggleTool",
-                            "sharelinkTool",
-                            "helloTool",
-                            "IMPRINT_Imprint_CustomInfoTool",
-                            "IMPRINT_Imprint_CustomInfoTool_mobile"
-                        ],
-                        "registerWidget": {
-                            "widgetRole": "drawer_button"
-                        },
-                        "container": "ignore",
-                        "windowType": "drawer_left"
                     }
+                ]
+            }
+        },
+        "toolrules": {
+            "ToolActiveStateManager": {
+                "activateOnStartToolIds": [
+                    "streetSmartToggleTool"
                 ]
             }
         }
