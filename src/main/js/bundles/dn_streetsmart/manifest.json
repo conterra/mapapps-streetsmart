@@ -29,7 +29,7 @@
                     "t": 42,
                     "b": 40,
                     "r": 0,
-                    "w": 500
+                    "w": "50%"
                 },
                 "fixEdgesInViewPort": {
                     "l": false
@@ -37,7 +37,7 @@
                 "dockable": true,
                 "autofocus": false,
                 "minimizeOnClose": true,
-                "resizable": true,
+                "resizable": false,
                 "draggable": false,
                 "closable": true,
                 "collapsable": true,
@@ -270,7 +270,7 @@
                 "tooltip": "${tool.tooltip}",
                 "toolRole": "toolset",
                 "togglable": true,
-                "iconClass": "icon-visibility-visible",
+                "iconClass": "icon-street-view",
                 "activateHandler": "activateStreetSmart",
                 "deactivateHandler": "deactivateStreetSmart"
             },
