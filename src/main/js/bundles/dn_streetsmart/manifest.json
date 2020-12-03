@@ -9,7 +9,7 @@
     ],
     "icon": {},
     "license": {},
-    "productName": "devnet-mapapps-time-slider",
+    "productName": "devnet-mapapps-streetsmart",
     "dependencies": {
         "coordinatetransformer": "^4.7.0",
         "geojson": "^4.7.0",
