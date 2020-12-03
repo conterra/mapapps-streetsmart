@@ -142,7 +142,7 @@ export default class StreetSmartController {
             let query = panoramaViewerInstance.parameters.query;
             switch (panoramaViewerInstance.method) {
                 case "lookAtCoordinate":
-                    if(!coordinate) {
+                    if (!coordinate) {
                         return;
                     }
                     panorama.lookAtCoordinate(coordinate, srs);
@@ -150,7 +150,7 @@ export default class StreetSmartController {
                     this._updateMarkerPosition(recording);
                     break;
                 case "openByCoordinate":
-                    if(!coordinate) {
+                    if (!coordinate) {
                         return;
                     }
                     panorama.openByCoordinate(coordinate, srs).then(recording => {
@@ -158,7 +158,7 @@ export default class StreetSmartController {
                     });
                     break;
                 case "openByAddress":
-                    if(!query) {
+                    if (!query) {
                         return;
                     }
                     panorama.openByAddress(query, srs).then(recording => {
@@ -166,7 +166,7 @@ export default class StreetSmartController {
                     });
                     break;
                 case "openByImageId":
-                    if(!imageId) {
+                    if (!imageId) {
                         return;
                     }
                     panorama.openByImageId(imageId, srs).then(recording => {
@@ -316,18 +316,18 @@ export default class StreetSmartController {
         if (scale) {
             mapWidgetModel.scale = scale;
         }
-        this._CenterMapOnHalfWindow();
+        this._centerMapOnHalfWindow();
     }
 
-    _CenterMapOnHalfWindow() {
+    _centerMapOnHalfWindow() {
         const mapWidgetModel = this._mapWidgetModel;
         const extent = mapWidgetModel.extent;
-        const newExtent = extent.clone();
         const difx = extent.xmax - extent.xmin;
-        const difIntx = difx / 2 / 2;
-        newExtent.xmax = extent.xmax + difIntx;
-        newExtent.xmin = extent.xmin + difIntx;
-        mapWidgetModel.extent = newExtent;
+        const difIntx = difx / 4;
+        const center = mapWidgetModel.center;
+        const newCenter = center.clone();
+        newCenter.x = center.x + difIntx;
+        mapWidgetModel.center = newCenter;
     }
 
 }
