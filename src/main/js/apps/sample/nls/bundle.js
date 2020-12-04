@@ -17,10 +17,10 @@ module.exports = {
     root: {
         apptitle: "map.apps 4 Sample",
         custominfo: {
-            imprint: {
-                title: "Imprint",
-                tooltip: "Show imprint",
-                content: "<p>This is a sample for an imprint.</p>"
+            welcome: {
+                title: "Street Smart Demo",
+                tooltip: "Street Smart Demo",
+                content: "<p>Welcome to the map.apps Street Smart sample app.</p><br><span>Start the Street Smart Bundle by clicking on the Street Smart Tool below the search bar.</span><br><br><span>Click on the Street Smart Marker within the map.apps map to activate the edit mode. Then you can move the marker while holding down the mouse button. You can exit the edit mode at any time by clicking next to the marker.</span>"
             }
         },
         map: {
