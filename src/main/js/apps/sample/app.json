@@ -102,7 +102,7 @@
                             },
                             "draggable": true,
                             "closable": true,
-                            "modal": true,
+                            "modal": false,
                             "maximizable": false,
                             "resizable": true,
                             "title": "${custominfo.welcome.title}"
