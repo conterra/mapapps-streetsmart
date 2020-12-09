@@ -30,7 +30,9 @@ export default class MarkerController {
     activate() {
         this._getView().then((view) => {
             const graphicsLayer = this.#graphicsLayer = new GraphicsLayer({
-                id: "streetSmartMarkerGraphicLayer"
+                id: "streetSmartMarkerGraphicLayer",
+                title: "StreetSmartMarkerGraphicLayer",
+                listMode: "hide"
             });
             this._mapWidgetModel.map.layers.add(graphicsLayer);
 
