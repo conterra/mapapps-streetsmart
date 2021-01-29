@@ -70,17 +70,17 @@ export default class StreetSmartController {
             overlayDrawDistance: streetSmartProperties.overlayDrawDistance,
             addressSettings: streetSmartProperties.addressSettings
         }).then(() => {
-                console.log("StreetSmart API initialized");
-                const mapWidgetModel = this._mapWidgetModel;
-                const center = mapWidgetModel.center;
-                this._openPanorama(center, true);
-            },
-            err => {
-                const msg = err.stack.toString();
-                this._logger.error(msg);
-                this._setProcessingStreetSmart(false);
-                console.log("Api: init: failed. Error: ", err);
-            }
+            console.log("StreetSmart API initialized");
+            const mapWidgetModel = this._mapWidgetModel;
+            const center = mapWidgetModel.center;
+            this._openPanorama(center, true);
+        },
+        err => {
+            const msg = err.stack.toString();
+            this._logger.error(msg);
+            this._setProcessingStreetSmart(false);
+            console.log("Api: init: failed. Error: ", err);
+        }
         );
     }
 
@@ -137,9 +137,9 @@ export default class StreetSmartController {
         if (panoramaViewerInstance && panoramaViewerInstance.method && panoramaViewerInstance.parameters) {
             const srs = panorama.props.recording.srs;
 
-            let coordinate = panoramaViewerInstance.parameters.coordinate;
-            let imageId = panoramaViewerInstance.parameters.imageId;
-            let query = panoramaViewerInstance.parameters.query;
+            const coordinate = panoramaViewerInstance.parameters.coordinate;
+            const imageId = panoramaViewerInstance.parameters.imageId;
+            const query = panoramaViewerInstance.parameters.query;
             switch (panoramaViewerInstance.method) {
                 case "lookAtCoordinate":
                     if (!coordinate) {
@@ -211,10 +211,15 @@ export default class StreetSmartController {
         markerController.activateMarker();
         markerController.drawMarker(center, 0);
         markerController.getSketchViewModel().on("update", event => {
-            let toolType = event?.toolEventInfo?.type;
+            const toolType = event?.toolEventInfo?.type;
             if (event.state === "complete" || toolType === "move-stop") {
                 const point = this._markerController.getPosition();
-                this._openPanorama(point);
+                if(!point) {
+                    return;
+                }
+                if(this._tool.active){
+                    this._openPanorama(point);
+                }
             }
         });
     }
@@ -291,9 +296,7 @@ export default class StreetSmartController {
         return this._coordinateTransformer.transform(
             point,
             targetWkid
-        ).then((transformedPoint) => {
-            return transformedPoint;
-        });
+        ).then((transformedPoint) => transformedPoint);
     }
 
     _getCoordinates(point) {
@@ -311,6 +314,9 @@ export default class StreetSmartController {
 
     _centerOnMarker(scale) {
         const point = this._markerController.getPosition();
+        if(!point){
+            return;
+        }
         const mapWidgetModel = this._mapWidgetModel;
         mapWidgetModel.center = point;
         if (scale) {

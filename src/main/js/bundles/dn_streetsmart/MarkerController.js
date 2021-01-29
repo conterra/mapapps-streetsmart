@@ -16,6 +16,7 @@
 import SketchViewModel from "esri/widgets/Sketch/SketchViewModel";
 import GraphicsLayer from "esri/layers/GraphicsLayer";
 import Graphic from "esri/Graphic";
+import async from "ct/async";
 
 export default class MarkerController {
 
@@ -51,6 +52,7 @@ export default class MarkerController {
         this.#markerGraphic = null;
         this.#angle = 0;
         this.#state = "normal";
+        this._removeMarker();
         this._removeWatcher();
     }
 
@@ -76,10 +78,10 @@ export default class MarkerController {
     }
 
     _removeMarker() {
+        this.#sketchViewModel.complete();
         this.#graphicsLayer.removeAll();
         this.#markerGraphic = null;
         this._mapWidgetModel.view.cursor = "default";
-        this.#sketchViewModel.complete();
     }
 
     getSketchViewModel() {
@@ -87,7 +89,7 @@ export default class MarkerController {
     }
 
     getPosition() {
-        return this.#markerGraphic.geometry;
+        return this.#markerGraphic?.geometry;
     }
 
     _addMarkerToGraphicsLayer(point) {
@@ -141,6 +143,9 @@ export default class MarkerController {
     _addSketchViewModelWatcher() {
         const sketchViewModel = this.#sketchViewModel;
         this.#sketchViewModelWatcher = sketchViewModel.on('update', evt => {
+            if(!this.#markerGraphic) {
+                return;
+            }
             if (evt.state === "start") {
                 this.#state = "available";
                 this.#markerGraphic.symbol = this._getSymbol("available", this.#angle);
