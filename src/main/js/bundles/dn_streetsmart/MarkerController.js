@@ -16,7 +16,6 @@
 import SketchViewModel from "esri/widgets/Sketch/SketchViewModel";
 import GraphicsLayer from "esri/layers/GraphicsLayer";
 import Graphic from "esri/Graphic";
-import async from "ct/async";
 
 export default class MarkerController {
 
