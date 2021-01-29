@@ -38,11 +38,7 @@ export default class StreetSmartController {
     activateStreetSmart(event) {
         this._tool = event.tool;
         this._createMarker();
-        if (this.#panorama) {
-            const panorama = this.#panorama;
-            const recording = panorama.props.recording;
-            this._updateMarkerPosition(recording);
-        }
+        this._openPanorama();
         this._setStreetSmartLayerVisibility(true);
         this._registerWatcher();
     }
@@ -71,9 +67,7 @@ export default class StreetSmartController {
             addressSettings: streetSmartProperties.addressSettings
         }).then(() => {
             console.log("StreetSmart API initialized");
-            const mapWidgetModel = this._mapWidgetModel;
-            const center = mapWidgetModel.center;
-            this._openPanorama(center, true);
+            this._openPanorama(null, true);
         },
         err => {
             const msg = err.stack.toString();
@@ -85,6 +79,10 @@ export default class StreetSmartController {
     }
 
     _openPanorama(point, firstOpen) {
+        if(!point) {
+            const mapWidgetModel = this._mapWidgetModel;
+            point = mapWidgetModel.center;
+        }
         this._getCoordinates(point).then((coordinates) => {
             const properties = this._streetSmartModel;
             const viewerType = this.#streetSmartAPI.ViewerType.PANORAMA;
