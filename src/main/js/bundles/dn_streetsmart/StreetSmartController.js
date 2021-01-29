@@ -138,13 +138,13 @@ export default class StreetSmartController {
             const coordinate = panoramaViewerInstance.parameters.coordinate;
             const imageId = panoramaViewerInstance.parameters.imageId;
             const query = panoramaViewerInstance.parameters.query;
+            const recording = panorama.props.recording;
             switch (panoramaViewerInstance.method) {
                 case "lookAtCoordinate":
                     if (!coordinate) {
                         return;
                     }
                     panorama.lookAtCoordinate(coordinate, srs);
-                    const recording = panorama.props.recording;
                     this._updateMarkerPosition(recording);
                     break;
                 case "openByCoordinate":
