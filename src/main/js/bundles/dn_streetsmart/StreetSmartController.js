@@ -21,6 +21,7 @@ export default class StreetSmartController {
     #streetSmartWatcher = null;
     #streetSmartProperties = null;
     #clickWatcher = null;
+    #markerWatcher = null;
     #panorama = null;
 
     activate() {
@@ -179,6 +180,7 @@ export default class StreetSmartController {
         const panorama = this.#panorama;
         if (panorama) {
             this.#clickWatcher = this._connectOnClickEvent();
+            this.#markerWatcher = this._connectOnSketchViewModel();
             this.#streetSmartWatcher.push(this._connectToMeasurementEvent());
             this._connectToStreetSmartAPIEvents(panorama);
         }
@@ -191,6 +193,8 @@ export default class StreetSmartController {
         this.#streetSmartWatcher = [];
         this.#clickWatcher.remove();
         this.#clickWatcher = null;
+        this.#markerWatcher.remove();
+        this.#markerWatcher = null;
     }
 
     _setProcessingStreetSmart(processing) {
@@ -208,18 +212,6 @@ export default class StreetSmartController {
         const markerController = this._markerController;
         markerController.activateMarker();
         markerController.drawMarker(center, 0);
-        markerController.getSketchViewModel().on("update", event => {
-            const toolType = event?.toolEventInfo?.type;
-            if (toolType === "move-stop") {
-                const point = this._markerController.getPosition();
-                if(!point) {
-                    return;
-                }
-                if(this._tool.active){
-                    this._openPanorama(point);
-                }
-            }
-        });
     }
 
     _connectOnClickEvent() {
@@ -247,6 +239,22 @@ export default class StreetSmartController {
                     }
                 }
             });
+        });
+    }
+
+    _connectOnSketchViewModel() {
+        const markerController = this._markerController;
+        markerController.getSketchViewModel().on("update", event => {
+            const toolType = event?.toolEventInfo?.type;
+            if (toolType === "move-stop") {
+                const point = this._markerController.getPosition();
+                if(!point) {
+                    return;
+                }
+                if(this._tool.active){
+                    this._openPanorama(point);
+                }
+            }
         });
     }
 
