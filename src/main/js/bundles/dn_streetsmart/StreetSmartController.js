@@ -80,6 +80,9 @@ export default class StreetSmartController {
     }
 
     _openPanorama(point, firstOpen) {
+        if(!this.#streetSmartAPI) {
+            return;
+        }
         if(!point) {
             const mapWidgetModel = this._mapWidgetModel;
             point = mapWidgetModel.center;
