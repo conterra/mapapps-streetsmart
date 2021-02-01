@@ -65,7 +65,6 @@ export default class MarkerController {
     }
 
     drawMarker(point, angle) {
-        console.log("render marker")
         if (!this.#markerGraphic) {
             this.#markerGraphic = this._addMarkerToGraphicsLayer(point);
         }

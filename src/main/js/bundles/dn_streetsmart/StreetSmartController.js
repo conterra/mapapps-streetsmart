@@ -73,7 +73,7 @@ export default class StreetSmartController {
             const msg = err.stack.toString();
             this._logger.error(msg);
             this._setProcessingStreetSmart(false);
-            console.log("Api: init: failed. Error: ", err);
+            console.error("Api: init: failed. Error: ", err);
         }
         );
     }
@@ -114,7 +114,7 @@ export default class StreetSmartController {
                 this._logger.error({
                     message: reason.toString()
                 });
-                console.log("Error opening panorama viewer: " + reason);
+                console.error("Error opening panorama viewer: " + reason);
             });
         });
     }
