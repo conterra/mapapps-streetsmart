@@ -85,7 +85,7 @@ export default class StreetSmartController {
         }
         this._getCoordinates(point).then((coordinates) => {
             const properties = this._streetSmartModel;
-            const viewerType = this.#streetSmartAPI.ViewerType.PANORAMA;
+            const viewerType = this.#streetSmartAPI?.ViewerType?.PANORAMA;
             const srs = properties.srs;
 
             this.#streetSmartAPI.open(coordinates, {
@@ -210,7 +210,7 @@ export default class StreetSmartController {
         markerController.drawMarker(center, 0);
         markerController.getSketchViewModel().on("update", event => {
             const toolType = event?.toolEventInfo?.type;
-            if (event.state === "complete" || toolType === "move-stop") {
+            if (toolType === "move-stop") {
                 const point = this._markerController.getPosition();
                 if(!point) {
                     return;
@@ -270,8 +270,9 @@ export default class StreetSmartController {
     }
 
     _updateMarkerPosition(recording) {
+        const angle = recording.orientation;
         this._getPoint(recording).then((point) => {
-            this._markerController.drawMarker(point);
+            this._markerController.drawMarker(point, angle);
             this._centerOnMarker();
         })
     }
