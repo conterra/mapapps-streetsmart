@@ -247,7 +247,7 @@ export default class StreetSmartController {
 
     _connectOnSketchViewModel() {
         const markerController = this._markerController;
-        markerController.getSketchViewModel().on("update", event => {
+        return markerController.getSketchViewModel().on("update", event => {
             const toolType = event?.toolEventInfo?.type;
             if (toolType === "move-stop") {
                 const point = this._markerController.getPosition();
