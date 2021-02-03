@@ -284,7 +284,15 @@
                 "togglable": true,
                 "iconClass": "icon-street-view",
                 "activateHandler": "activateStreetSmart",
-                "deactivateHandler": "deactivateStreetSmart"
+                "deactivateHandler": "deactivateStreetSmart",
+                "rules": {
+                    "subLayoutNames": [
+                        "desktop",
+                        "tablet_landscape",
+                        "tablet_portrait"
+                    ],
+                    "ruleSuccessProperty": "visibility"
+                }
             },
             "references": [
                 {
