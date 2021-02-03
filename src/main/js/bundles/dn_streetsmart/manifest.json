@@ -18,22 +18,8 @@
     "layout-widgets": [
         {
             "widgetRole": "streetSmartWidget",
-            "sublayout": [
-                "desktop",
-                "tablet_landscape",
-                "tablet_portrait"
-            ],
             "window": {
                 "dockTool": "streetSmartToggleTool",
-                "marginBox": {
-                    "t": 42,
-                    "b": 40,
-                    "r": 0,
-                    "w": "50%"
-                },
-                "fixEdgesInViewPort": {
-                    "l": false
-                },
                 "dockable": true,
                 "autofocus": false,
                 "minimizeOnClose": true,
@@ -50,19 +36,45 @@
         {
             "widgetRole": "streetSmartWidget",
             "sublayout": [
-                "mobile_landscape",
+                "desktop",
+                "tablet_landscape",
+                "tablet_portrait"
+            ],
+            "window": {
+                "marginBox": {
+                    "t": 42,
+                    "b": 40,
+                    "r": 0,
+                    "w": "50%"
+                }
+            }
+        },
+        {
+            "widgetRole": "streetSmartWidget",
+            "sublayout": [
                 "mobile_portrait"
             ],
             "window": {
-                "autofocus": false,
-                "minimizeOnClose": true,
                 "marginBox": {
-                    "w": "100%",
-                    "h": "50%",
+                    "t": 0,
                     "b": 40,
-                    "l": 0
-                },
-                "windowClass": "mobileWindow noTitleBarAndWindowTools"
+                    "r": 0,
+                    "w": "50%"
+                }
+            }
+        },
+        {
+            "widgetRole": "streetSmartWidget",
+            "sublayout": [
+                "mobile_landscape"
+            ],
+            "window": {
+                "marginBox": {
+                    "t": 0,
+                    "b": 0,
+                    "r": 0,
+                    "w": "50%"
+                }
             }
         }
     ],
