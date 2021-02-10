@@ -4,9 +4,7 @@
     "title": "${bundleTitle}",
     "description": "${bundleDescription}",
     "vendor": "con terra GmbH",
-    "keywords": [
-        "streetsmart"
-    ],
+    "keywords": ["streetsmart"],
     "icon": {},
     "license": {},
     "productName": "devnet-mapapps-streetsmart",
@@ -35,11 +33,7 @@
         },
         {
             "widgetRole": "streetSmartWidget",
-            "sublayout": [
-                "desktop",
-                "tablet_landscape",
-                "tablet_portrait"
-            ],
+            "sublayout": ["desktop", "tablet_landscape", "tablet_portrait"],
             "window": {
                 "marginBox": {
                     "t": 42,
@@ -51,9 +45,7 @@
         },
         {
             "widgetRole": "streetSmartWidget",
-            "sublayout": [
-                "mobile_portrait"
-            ],
+            "sublayout": ["mobile_portrait"],
             "window": {
                 "marginBox": {
                     "t": 0,
@@ -65,9 +57,7 @@
         },
         {
             "widgetRole": "streetSmartWidget",
-            "sublayout": [
-                "mobile_landscape"
-            ],
+            "sublayout": ["mobile_landscape"],
             "window": {
                 "marginBox": {
                     "t": 0,
@@ -115,9 +105,7 @@
         {
             "name": "Config",
             "impl": "./StreetSmartModel",
-            "provides": [
-                "dn_streetsmart.StreetSmartModel"
-            ],
+            "provides": ["dn_streetsmart.StreetSmartModel"],
             "propertiesConstructor": true,
             "properties": {
                 "streetSmartProperties": {
@@ -137,19 +125,19 @@
                 "markerSymbols": {
                     "normal": {
                         "type": "picture-marker",
-                        "url": "resource('./images/streetViewMarker.png')",
+                        "url": "resource('./images/green/streetViewMarker.png')",
                         "width": 30,
                         "height": 30
                     },
                     "dragging": {
                         "type": "picture-marker",
-                        "url": "resource('./images/streetViewMarkerDragging.png')",
+                        "url": "resource('./images/green/streetViewMarkerDragging.png')",
                         "width": 30,
                         "height": 30
                     },
                     "available": {
                         "type": "picture-marker",
-                        "url": "resource('./images/streetViewMarkerAvailable.png')",
+                        "url": "resource('./images/green/streetViewMarkerAvailable.png')",
                         "width": 30,
                         "height": 30
                     }
@@ -157,49 +145,24 @@
                 "measurementSymbols": {
                     "point": {
                         "type": "simple-marker",
-                        "color": [
-                            236,
-                            122,
-                            8,
-                            0.25
-                        ],
+                        "color": [236, 122, 8, 0.25],
                         "size": 16,
                         "outline": {
-                            "color": [
-                                236,
-                                122,
-                                8,
-                                1
-                            ],
+                            "color": [236, 122, 8, 1],
                             "width": 2
                         }
                     },
                     "polyline": {
                         "type": "simple-line",
                         "width": 1.3,
-                        "color": [
-                            236,
-                            122,
-                            8,
-                            1
-                        ]
+                        "color": [236, 122, 8, 1]
                     },
                     "polygon": {
                         "type": "simple-fill",
-                        "color": [
-                            236,
-                            122,
-                            8,
-                            0.25
-                        ],
+                        "color": [236, 122, 8, 0.25],
                         "style": "solid",
                         "outline": {
-                            "color": [
-                                236,
-                                122,
-                                8,
-                                1
-                            ],
+                            "color": [236, 122, 8, 1],
                             "width": 2
                         }
                     },
@@ -218,9 +181,7 @@
         },
         {
             "name": "StreetSmartWidgetFactory",
-            "provides": [
-                "dijit.Widget"
-            ],
+            "provides": ["dijit.Widget"],
             "instanceFactory": true,
             "properties": {
                 "widgetRole": "streetSmartWidget",
@@ -235,9 +196,7 @@
         },
         {
             "name": "MarkerController",
-            "provides": [
-                "dn_streetsmart.MarkerController"
-            ],
+            "provides": ["dn_streetsmart.MarkerController"],
             "references": [
                 {
                     "name": "_streetSmartModel",
@@ -251,9 +210,7 @@
         },
         {
             "name": "MeasurementController",
-            "provides": [
-                "dn_streetsmart.MeasurementController"
-            ],
+            "provides": ["dn_streetsmart.MeasurementController"],
             "references": [
                 {
                     "name": "_streetSmartModel",
@@ -272,9 +229,7 @@
         {
             "name": "StreetSmartToggleTool",
             "impl": "ct/tools/Tool",
-            "provides": [
-                "ct.tools.Tool"
-            ],
+            "provides": ["ct.tools.Tool"],
             "propertiesConstructor": true,
             "properties": {
                 "id": "streetSmartToggleTool",
