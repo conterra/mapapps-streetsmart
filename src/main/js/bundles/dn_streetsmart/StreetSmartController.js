@@ -16,7 +16,6 @@
 import Point from "esri/geometry/Point";
 
 export default class StreetSmartController {
-
     #streetSmartAPI = null;
     #streetSmartWatcher = null;
     #streetSmartProperties = null;
@@ -57,33 +56,36 @@ export default class StreetSmartController {
         this._setProcessingStreetSmart(true);
         this.#streetSmartAPI = streetSmartAPI;
         const streetSmartProperties = this.#streetSmartProperties;
-        streetSmartAPI.init({
-            targetElement: streetSmartDiv,
-            username: streetSmartProperties.username,
-            password: streetSmartProperties.password,
-            apiKey: streetSmartProperties.apiKey,
-            srs: streetSmartProperties.srs,
-            locale: streetSmartProperties.locale,
-            overlayDrawDistance: streetSmartProperties.overlayDrawDistance,
-            addressSettings: streetSmartProperties.addressSettings
-        }).then(() => {
-            console.log("StreetSmart API initialized");
-            this._openPanorama(null, true);
-        },
-        err => {
-            const msg = err.stack.toString();
-            this._logger.error(msg);
-            this._setProcessingStreetSmart(false);
-            console.error("Api: init: failed. Error: ", err);
-        }
-        );
+        streetSmartAPI
+            .init({
+                targetElement: streetSmartDiv,
+                username: streetSmartProperties.username,
+                password: streetSmartProperties.password,
+                apiKey: streetSmartProperties.apiKey,
+                srs: streetSmartProperties.srs,
+                locale: streetSmartProperties.locale,
+                overlayDrawDistance: streetSmartProperties.overlayDrawDistance,
+                addressSettings: streetSmartProperties.addressSettings,
+            })
+            .then(
+                () => {
+                    console.log("StreetSmart API initialized");
+                    this._openPanorama(null, true, streetSmartDiv);
+                },
+                (err) => {
+                    const msg = err.stack.toString();
+                    this._logger.error(msg);
+                    this._setProcessingStreetSmart(false);
+                    console.error("Api: init: failed. Error: ", err);
+                }
+            );
     }
 
-    _openPanorama(point, firstOpen) {
-        if(!this.#streetSmartAPI) {
+    _openPanorama(point, firstOpen, streetSmartDiv) {
+        if (!this.#streetSmartAPI) {
             return;
         }
-        if(!point) {
+        if (!point) {
             const mapWidgetModel = this._mapWidgetModel;
             point = mapWidgetModel.center;
         }
@@ -92,18 +94,19 @@ export default class StreetSmartController {
             const viewerType = this.#streetSmartAPI?.ViewerType?.PANORAMA;
             const srs = properties.srs;
 
-            this.#streetSmartAPI.open(coordinates, {
-                viewerType: viewerType,
-                srs: srs,
-                panoramaViewer: {
-                    replace: true,
-                    closable: false,
-                    maximizable: false
-                }
-            }).then(
-                result => {
+            this.#streetSmartAPI
+                .open(coordinates, {
+                    viewerType: viewerType,
+                    srs: srs,
+                    panoramaViewer: {
+                        replace: true,
+                        closable: false,
+                        maximizable: false,
+                    },
+                })
+                .then((result) => {
                     if (result.length) {
-                        const panorama = this.#panorama = result[0];
+                        const panorama = (this.#panorama = result[0]);
                         const recording = panorama.props.recording;
                         this._updateMarkerPosition(recording);
                         if (firstOpen) {
@@ -111,22 +114,33 @@ export default class StreetSmartController {
                             this._panoramaViewerCustomMethod(panorama);
                         }
                         this._setProcessingStreetSmart(false);
+                    } else {
+                        this._logger.warn(
+                            "No imagery is available at this location."
+                        );
+                        console.warn(
+                            "No imagery is available at this location."
+                        );
+                        this.deactivateStreetSmart();
+                        this._setProcessingStreetSmart(false);
                     }
-                }
-            ).catch(reason => {
-                this._setProcessingStreetSmart(false);
-                this._logger.error({
-                    message: reason.toString()
+                })
+                .catch((reason) => {
+                    this._setProcessingStreetSmart(false);
+                    this._logger.error({
+                        message: reason.toString(),
+                    });
+                    console.error("Error opening panorama viewer: " + reason);
                 });
-                console.error("Error opening panorama viewer: " + reason);
-            });
         });
     }
 
     _setStreetSmartLayerVisibility(visible) {
         const streetSmartLayerId = this._streetSmartModel.streetSmartLayerId;
         if (streetSmartLayerId) {
-            const streetSmartLayer = this._mapWidgetModel.map.findLayerById(streetSmartLayerId);
+            const streetSmartLayer = this._mapWidgetModel.map.findLayerById(
+                streetSmartLayerId
+            );
             if (streetSmartLayer) {
                 streetSmartLayer.visible = visible;
             }
@@ -135,8 +149,13 @@ export default class StreetSmartController {
 
     _panoramaViewerCustomMethod(panorama) {
         const streetSmartProperties = this.#streetSmartProperties;
-        const panoramaViewerInstance = streetSmartProperties.panoramaViewerInstance;
-        if (panoramaViewerInstance && panoramaViewerInstance.method && panoramaViewerInstance.parameters) {
+        const panoramaViewerInstance =
+            streetSmartProperties.panoramaViewerInstance;
+        if (
+            panoramaViewerInstance &&
+            panoramaViewerInstance.method &&
+            panoramaViewerInstance.parameters
+        ) {
             const srs = panorama.props.recording.srs;
 
             const coordinate = panoramaViewerInstance.parameters.coordinate;
@@ -155,15 +174,17 @@ export default class StreetSmartController {
                     if (!coordinate) {
                         return;
                     }
-                    panorama.openByCoordinate(coordinate, srs).then(recording => {
-                        this._updateMarkerPosition(recording);
-                    });
+                    panorama
+                        .openByCoordinate(coordinate, srs)
+                        .then((recording) => {
+                            this._updateMarkerPosition(recording);
+                        });
                     break;
                 case "openByAddress":
                     if (!query) {
                         return;
                     }
-                    panorama.openByAddress(query, srs).then(recording => {
+                    panorama.openByAddress(query, srs).then((recording) => {
                         this._updateMarkerPosition(recording);
                     });
                     break;
@@ -171,7 +192,7 @@ export default class StreetSmartController {
                     if (!imageId) {
                         return;
                     }
-                    panorama.openByImageId(imageId, srs).then(recording => {
+                    panorama.openByImageId(imageId, srs).then((recording) => {
                         this._updateMarkerPosition(recording);
                     });
                     break;
@@ -192,11 +213,19 @@ export default class StreetSmartController {
     _removeWatcher() {
         this.#streetSmartWatcher.forEach((watcher) => {
             watcher.removeListener();
-        })
+        });
         this.#streetSmartWatcher = [];
-        this.#clickWatcher.remove();
+        try {
+            this.#clickWatcher.remove();
+        } catch (err) {
+            console.warn(err);
+        }
         this.#clickWatcher = null;
-        this.#markerWatcher.remove();
+        try {
+            this.#markerWatcher.remove();
+        } catch (err) {
+            console.warn(err);
+        }
         this.#markerWatcher = null;
     }
 
@@ -220,14 +249,17 @@ export default class StreetSmartController {
     _connectOnClickEvent() {
         const view = this._mapWidgetModel.view;
         const streetSmartLayerId = this._streetSmartModel.streetSmartLayerId;
-        return view.on("click", event => {
-            view.hitTest(event).then(response => {
+        return view.on("click", (event) => {
+            view.hitTest(event).then((response) => {
                 const results = response.results;
                 if (response.results.length > 0) {
                     //proof that the event was not triggered on the marker's graphic.
-                    const clickOnMarker = response.results.some(result => {
+                    const clickOnMarker = response.results.some((result) => {
                         const graphic = result.graphic;
-                        return graphic.layer?.id === "streetSmartMarkerGraphicLayer";
+                        return (
+                            graphic.layer?.id ===
+                            "streetSmartMarkerGraphicLayer"
+                        );
                     });
                     if (!clickOnMarker && streetSmartLayerId) {
                         for (let i = 0; i < results.length; i++) {
@@ -247,14 +279,14 @@ export default class StreetSmartController {
 
     _connectOnSketchViewModel() {
         const markerController = this._markerController;
-        return markerController.getSketchViewModel().on("update", event => {
+        return markerController.getSketchViewModel().on("update", (event) => {
             const toolType = event?.toolEventInfo?.type;
             if (toolType === "move-stop") {
                 const point = this._markerController.getPosition();
-                if(!point) {
+                if (!point) {
                     return;
                 }
-                if(this._tool.active){
+                if (this._tool.active) {
                     this._openPanorama(point);
                 }
             }
@@ -262,18 +294,24 @@ export default class StreetSmartController {
     }
 
     _connectToStreetSmartAPIEvents(panorama) {
-        this.#streetSmartWatcher.push(panorama.on("VIEW_CHANGE", event => {
-            const angle = event.detail.yaw;
-            this._markerController.drawMarker(null, angle);
-        }));
-        this.#streetSmartWatcher.push(panorama.on("RECORDING_CLICK", event => {
-            this._updateMarkerPosition(event.detail.recording);
-        }));
+        this.#streetSmartWatcher.push(
+            panorama.on("VIEW_CHANGE", (event) => {
+                const angle = event.detail.yaw;
+                this._markerController.drawMarker(null, angle);
+            })
+        );
+        this.#streetSmartWatcher.push(
+            panorama.on("RECORDING_CLICK", (event) => {
+                this._updateMarkerPosition(event.detail.recording);
+            })
+        );
     }
 
     _connectToMeasurementEvent() {
-        return this.#streetSmartAPI.on("MEASUREMENT_CHANGED", event => {
-            const measurementFeatures = this._measurementController.drawMeasurement(event);
+        return this.#streetSmartAPI.on("MEASUREMENT_CHANGED", (event) => {
+            const measurementFeatures = this._measurementController.drawMeasurement(
+                event
+            );
             if (measurementFeatures?.length === 1) {
                 this._centerOnMarker(250);
             }
@@ -285,7 +323,7 @@ export default class StreetSmartController {
         this._getPoint(recording).then((point) => {
             this._markerController.drawMarker(point, angle);
             this._centerOnMarker();
-        })
+        });
     }
 
     _getPoint(recording) {
@@ -300,31 +338,29 @@ export default class StreetSmartController {
             x: x,
             y: y,
             spatialReference: {
-                wkid: wkid
-            }
+                wkid: wkid,
+            },
         });
-        return this._coordinateTransformer.transform(
-            point,
-            targetWkid
-        ).then((transformedPoint) => transformedPoint);
+        return this._coordinateTransformer
+            .transform(point, targetWkid)
+            .then((transformedPoint) => transformedPoint);
     }
 
     _getCoordinates(point) {
         const srs = this.#streetSmartProperties.srs;
         const targetWkid = srs.split(":")[1];
-        return this._coordinateTransformer.transform(
-            point,
-            targetWkid
-        ).then((transformedPoint) => {
-            const x = transformedPoint.x.toString();
-            const y = transformedPoint.y.toString();
-            return x + " , " + y;
-        });
+        return this._coordinateTransformer
+            .transform(point, targetWkid)
+            .then((transformedPoint) => {
+                const x = transformedPoint.x.toString();
+                const y = transformedPoint.y.toString();
+                return x + " , " + y;
+            });
     }
 
     _centerOnMarker(scale) {
         const point = this._markerController.getPosition();
-        if(!point){
+        if (!point) {
             return;
         }
         const mapWidgetModel = this._mapWidgetModel;
@@ -345,5 +381,4 @@ export default class StreetSmartController {
         newCenter.x = center.x + difIntx;
         mapWidgetModel.center = newCenter;
     }
-
 }

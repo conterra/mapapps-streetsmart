@@ -3,10 +3,7 @@
         "title": "${apptitle}"
     },
     "load": {
-        "bundleLocations": [
-            "localbundles",
-            "bundles"
-        ],
+        "bundleLocations": ["localbundles", "bundles"],
         "allowedBundles": [
             "system",
             "console",
@@ -36,21 +33,17 @@
             "custominfo",
             "dn_streetsmart"
         ],
-        "require": [
-            "${app}.app"
-        ],
-        "i18n": [
-            "bundle"
-        ]
+        "require": ["${app}.app"],
+        "i18n": ["bundle"]
     },
     "bundles": {
         "dn_streetsmart": {
             "Config": {
                 "streetSmartProperties": {
-                    "apiKey": "",
-                    "username": "",
-                    "password": "",
-                    "srs": "EPSG:25832",
+                    "apiKey": "STYhWnEpqnslCr8VWT4Fy74xevMJ-n0xCrQJe_gVinwFyDgxyf0heDwNOH85yjE5",
+                    "username": "Luxplan_Bissen",
+                    "password": "37q9pksr",
+                    "srs": "EPSG:2169",
                     "locale": "de",
                     "overlayDrawDistance": 30,
                     "addressSettings": {
@@ -60,10 +53,7 @@
                     "panoramaViewerInstance": {
                         "method": "lookAtCoordinate",
                         "parameters": {
-                            "coordinate": [
-                                359820,
-                                5647699
-                            ]
+                            "coordinate": [359820, 5647699]
                         }
                     }
                 },
@@ -112,12 +102,7 @@
                     "toolClass": "ctInfo",
                     "title": "${welcome.imprint.title}",
                     "tooltip": "${welcome.imprint.tooltip}",
-                    "tooltipPositions": [
-                        "after",
-                        "above",
-                        "below",
-                        "before"
-                    ],
+                    "tooltipPositions": ["after", "above", "below", "before"],
                     "iconClass": "icon-custom-info-imprint",
                     "togglable": true,
                     "id": "IMPRINT_Imprint_CustomInfoTool"
@@ -126,421 +111,113 @@
         },
         "map-init": {
             "Config": {
-                "basemaps": [
-                    {
-                        "id": "hybrid",
-                        "title": "Hybride Ansicht",
-                        "description": "Hybride Ansicht Lufbild und Stra\u00DFen",
-                        "selected": true,
-                        "basemap": {
-                            "type": "GROUP",
-                            "layers": [
-                                {
-                                    "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay",
-                                    "copyright": "Land NRW (2019) Datenlizenz Deutschland - Namensnennung - Version 2.0 (www.govdata.de/dl-de/by-2-0)",
-                                    "type": "WMS",
-                                    "version": "1.3.0",
-                                    "queryable": false,
-                                    "format": "image/png32",
-                                    "sublayers": [
-                                        {
-                                            "name": "nw_dop_overlay_autobahn"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_autobahn_beschriftung_1"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_autobahn_beschriftung_2"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_bundesstrassen"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_bundesstrassen_beschriftung_1"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_bundesstrassen_beschriftung_2"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_landstrassen"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_landstrassen_beschriftung"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_kreisstrassen"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_kreisstrassen_beschriftung"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_ortsstrassen"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_ortsstrassen_beschriftung"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_strassen_bau"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_unbefahrbare_wege"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_faehren"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_geonamen"
-                                        },
-                                        {
-                                            "name": "nw_dop_overlay_hausnummern"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "AGS_IMAGE",
-                                    "url": "https://geoportal.stadt-koeln.de/arcgis/rest/services/Luftbilder/Luftbild_2018/ImageServer/"
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "map": {
-                    "layers": [
-                        {
-                            "id": "koeln2",
-                            "title": "${map.koeln2.title}",
-                            "description": "${map.koeln2.description}",
-                            "type": "GROUP",
-                            "layers": [
-                                {
-                                    "title": "${map.koeln2.libraries.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/1",
-                                    "type": "AGS_FEATURE",
-                                    "visible": true,
-                                    "popupTemplate": {
-                                        "title": "{NAME_LANG}",
-                                        "content": [
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "NAME_LANG",
-                                                        "label": "${common.name}"
-                                                    },
-                                                    {
-                                                        "fieldName": "ADRESSE",
-                                                        "label": "${common.address}"
-                                                    },
-                                                    {
-                                                        "fieldName": "PLZ",
-                                                        "label": "${common.zip}"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "title": "${map.koeln2.museums.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/2",
-                                    "type": "AGS_FEATURE",
-                                    "visible": true,
-                                    "popupTemplate": {
-                                        "title": "Museum",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln2.museums.text}"
-                                            },
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "ADRESSE",
-                                                        "label": "${common.address}"
-                                                    },
-                                                    {
-                                                        "fieldName": "STADTBEZIR",
-                                                        "label": "${common.precint}"
-                                                    },
-                                                    {
-                                                        "fieldName": "HYPERLINK",
-                                                        "label": "${common.furtherinfo}"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "id": "schools",
-                                    "title": "${map.koeln2.schools.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/3",
-                                    "type": "AGS_FEATURE",
-                                    "visible": false,
-                                    "popupTemplate": {
-                                        "title": "{NAME}",
-                                        "content": [
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "SCHULNAME",
-                                                        "label": "${common.name}"
-                                                    },
-                                                    {
-                                                        "fieldName": "ADRESSE",
-                                                        "label": "${common.address}"
-                                                    },
-                                                    {
-                                                        "fieldName": "SCHULART",
-                                                        "label": "${common.type}"
-                                                    },
-                                                    {
-                                                        "fieldName": "TRAEGER",
-                                                        "label": "${common.provider}"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "id": "koeln3",
-                            "title": "${map.koeln3.title}",
-                            "type": "GROUP",
-                            "visible": true,
-                            "layers": [
-                                {
-                                    "title": "${map.koeln3.sights.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/4",
-                                    "type": "AGS_FEATURE",
-                                    "popupTemplate": {
-                                        "title": "${map.koeln3.sights.titleSingle}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln3.sights.text}"
-                                            },
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "ADRESSE",
-                                                        "label": "${common.address}"
-                                                    },
-                                                    {
-                                                        "fieldName": "STADTBEZIRK",
-                                                        "label": "${common.precint}"
-                                                    },
-                                                    {
-                                                        "fieldName": "HYPERLINK",
-                                                        "label": "${common.furtherinfo}"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "title": "${map.koeln3.playgrounds.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/5",
-                                    "type": "AGS_FEATURE",
-                                    "visible": false,
-                                    "popupTemplate": {
-                                        "title": "{Typ}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln3.playgrounds.text}"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "title": "${map.koeln3.places.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/9",
-                                    "type": "AGS_FEATURE",
-                                    "popupTemplate": {
-                                        "title": "${map.koeln3.places.titleSingle}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln3.places.text}"
-                                            },
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "ADRESSE",
-                                                        "label": "${common.address}"
-                                                    },
-                                                    {
-                                                        "fieldName": "STADTVIERT",
-                                                        "label": "${common.district}"
-                                                    },
-                                                    {
-                                                        "fieldName": "HYPERLINK",
-                                                        "label": "${common.furtherinfo}"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "id": "koeln1",
-                            "title": "${map.koeln1.title}",
-                            "type": "GROUP",
-                            "visible": true,
-                            "layers": [
-                                {
-                                    "title": "${map.koeln1.districts.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/8",
-                                    "type": "AGS_FEATURE",
-                                    "visible": false,
-                                    "opacity": 0.5,
-                                    "popupTemplate": {
-                                        "title": "{STV_NAME}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln1.districts.text}"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "title": "${map.koeln1.boroughs.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/7",
-                                    "type": "AGS_FEATURE",
-                                    "opacity": 0.5,
-                                    "minScale": 80000,
-                                    "popupTemplate": {
-                                        "title": "{NAME}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln1.boroughs.text}"
-                                            },
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "expression/area",
-                                                        "format": {
-                                                            "places": 2,
-                                                            "digitSeparator": true
-                                                        }
-                                                    },
-                                                    {
-                                                        "fieldName": "expression/area-rel",
-                                                        "format": {
-                                                            "places": 2,
-                                                            "digitSeparator": true
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "expressionInfos": [
-                                            {
-                                                "name": "area",
-                                                "title": "${common.area}",
-                                                "expression": "$feature.FLAECHE / 10000"
-                                            },
-                                            {
-                                                "name": "area-rel",
-                                                "title": "${common.totalArea}",
-                                                "expression": "Round(($feature.FLAECHE / 405020000)*100,2)"
-                                            }
-                                        ]
-                                    }
-                                },
-                                {
-                                    "title": "${map.koeln1.precints.title}",
-                                    "url": "https://services.arcgis.com/ObdAEOfl1Z5LP2D0/arcgis/rest/services/Köln/FeatureServer/6",
-                                    "type": "AGS_FEATURE",
-                                    "opacity": 0.5,
-                                    "maxScale": 80000,
-                                    "popupTemplate": {
-                                        "title": "{NAME}",
-                                        "content": [
-                                            {
-                                                "type": "text",
-                                                "text": "${map.koeln1.precints.text}"
-                                            },
-                                            {
-                                                "type": "fields",
-                                                "fieldInfos": [
-                                                    {
-                                                        "fieldName": "expression/area",
-                                                        "format": {
-                                                            "places": 2,
-                                                            "digitSeparator": true
-                                                        }
-                                                    },
-                                                    {
-                                                        "fieldName": "expression/area-rel",
-                                                        "format": {
-                                                            "places": 2,
-                                                            "digitSeparator": true
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "expressionInfos": [
-                                            {
-                                                "name": "area",
-                                                "title": "${common.area}",
-                                                "expression": "$feature.FLAECHE / 10000"
-                                            },
-                                            {
-                                                "name": "area-rel",
-                                                "title": "${common.totalArea}",
-                                                "expression": "Round(($feature.FLAECHE / 405020000)*100,2)"
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
-                    ],
-                    "ground": {
-                        "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
-                        "type": "ELEVATION"
-                    }
-                },
                 "view": {
                     "viewmode": "2D",
+                    "scale": 10000,
                     "center": {
-                        "x": 359720,
-                        "y": 5647699,
+                        "x": 73303.88679925492,
+                        "y": 94753.06439166873,
                         "spatialReference": {
-                            "wkid": 25832,
-                            "latestWkid": 25832
+                            "wkid": 2169
                         }
                     },
-                    "scale": 2500,
                     "constraints": {
-                        "geometry": {
-                            "type": "extent",
-                            "xmin": 359392.08,
-                            "ymin": 5647509.66,
-                            "xmax": 359856.42,
-                            "ymax": 5647939.72,
-                            "spatialReference": {
-                                "wkid": 25832,
-                                "latestWkid": 25832
+                        "lods": [
+                            {
+                                "resolution": 132.2919312505292,
+                                "scale": 500000,
+                                "level": 0
+                            },
+                            {
+                                "resolution": 66.1459656252646,
+                                "scale": 250000,
+                                "level": 1
+                            },
+                            {
+                                "resolution": 26.458386250105836,
+                                "scale": 100000,
+                                "level": 2
+                            },
+                            {
+                                "resolution": 13.229193125052918,
+                                "scale": 50000,
+                                "level": 3
+                            },
+                            {
+                                "resolution": 6.614596562526459,
+                                "scale": 25000,
+                                "level": 4
+                            },
+                            {
+                                "resolution": 2.6458386250105836,
+                                "scale": 10000,
+                                "level": 5
+                            },
+                            {
+                                "resolution": 1.3229193125052918,
+                                "scale": 5000,
+                                "level": 6
+                            },
+                            {
+                                "resolution": 0.6614596562526459,
+                                "scale": 2500,
+                                "level": 7
+                            },
+                            {
+                                "resolution": 0.39687579375158755,
+                                "scale": 1500,
+                                "level": 8
+                            },
+                            {
+                                "resolution": 0.26458386250105836,
+                                "scale": 1000,
+                                "level": 9
+                            },
+                            {
+                                "resolution": 0.13229193125052918,
+                                "scale": 500,
+                                "level": 10
+                            },
+                            {
+                                "resolution": 0.066145965625264,
+                                "scale": 250,
+                                "level": 11
+                            },
+                            {
+                                "resolution": 0.026458386250105836,
+                                "scale": 100,
+                                "level": 12
+                            },
+                            {
+                                "resolution": 0.013229193125052918,
+                                "scale": 50,
+                                "level": 13
+                            },
+                            {
+                                "resolution": 0.006614596562526459,
+                                "scale": 25,
+                                "level": 14
                             }
+                        ]
+                    }
+                },
+                "basemaps": [
+                    {
+                        "id": "basemap_bdtopo_gris",
+                        "selected": true,
+                        "title": "BDTopo 2013 gris",
+                        "description": "Données vectorielles niveau gris de la BD-L-TC 2013 <br>© Origine Cadastre: Droits réservés à l’Etat du Grand-Duché de Luxembourg (2013) - COPIE ET REPRODUCTION INTERDITES",
+                        "basemap": {
+                            "url": "http://192.168.100.85/mapproxy/bdtopo/service?SERVICE=WMS&FORMAT=image/png&TRANSPARENT=TRUE",
+                            "type": "WMS",
+                            "sublayers": [
+                                {
+                                    "id": "bdtopo_2013_gris"
+                                }
+                            ]
                         }
                     }
-                }
+                ]
             }
         },
         "themes": {
@@ -584,9 +261,7 @@
                             },
                             {
                                 "widgetRole": "banner",
-                                "sublayout": [
-                                    "mobile_portrait"
-                                ],
+                                "sublayout": ["mobile_portrait"],
                                 "attachTo": "footer_right"
                             }
                         ]
@@ -620,9 +295,7 @@
                     },
                     {
                         "id": "label_tools",
-                        "tools": [
-                            "streetSmartToggleTool"
-                        ],
+                        "tools": ["streetSmartToggleTool"],
                         "container": "map",
                         "position": {
                             "rel_t": 90,
@@ -636,9 +309,7 @@
         },
         "toolrules": {
             "ToolActiveStateManager": {
-                "activateOnStartToolIds": [
-                    "IMPRINT_Imprint_CustomInfoTool"
-                ]
+                "activateOnStartToolIds": ["IMPRINT_Imprint_CustomInfoTool"]
             }
         }
     }

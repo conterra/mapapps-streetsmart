@@ -14,3 +14,6 @@
 /.vscode/settings.json
 /.externalToolBuilders/
 /package-lock.json
+src/main/js/apps/sample/app.json
+pom.xml
+
