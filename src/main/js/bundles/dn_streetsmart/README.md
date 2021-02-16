@@ -25,7 +25,7 @@ To make the functions of this bundle available to the user, the following tool c
         "username": "",
         "password": "",
         "srs": "",
-        "locale": "en-US",
+        "locale": "de",
         "overlayDrawDistance": 30,
         "addressSettings": {
             "locale": "de",
