@@ -111,6 +111,15 @@ export default class StreetSmartController {
                             this._panoramaViewerCustomMethod(panorama);
                         }
                         this._setProcessingStreetSmart(false);
+                    } else {
+                        this._logger.warn(
+                            "No imagery is available at this location."
+                        );
+                        console.warn(
+                            "No imagery is available at this location."
+                        );
+                        this.deactivateStreetSmart();
+                        this._setProcessingStreetSmart(false);
                     }
                 }
             ).catch(reason => {
@@ -194,9 +203,19 @@ export default class StreetSmartController {
             watcher.removeListener();
         })
         this.#streetSmartWatcher = [];
-        this.#clickWatcher.remove();
+        try {
+            this.#clickWatcher.remove();
+        } catch (err) {
+            console.warn(err);
+        }
+        this.#clickWatcher = null;
         this.#clickWatcher = null;
         this.#markerWatcher.remove();
+        try {
+            this.#markerWatcher.remove();
+        } catch (err) {
+            console.warn(err);
+        }
         this.#markerWatcher = null;
     }
 
