@@ -300,9 +300,8 @@ export default class StreetSmartController {
     }
 
     _updateMarkerPosition(recording) {
-        const angle = recording.orientation;
         this._getPoint(recording).then((point) => {
-            this._markerController.drawMarker(point, angle);
+            this._markerController.drawMarker(point);
             this._centerOnMarker();
         })
     }
