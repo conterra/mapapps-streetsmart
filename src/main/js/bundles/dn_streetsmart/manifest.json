@@ -59,7 +59,7 @@
                     "t": 0,
                     "b": 40,
                     "r": 0,
-                    "w": "50%"
+                    "l": 0
                 }
             }
         },
@@ -284,15 +284,7 @@
                 "togglable": true,
                 "iconClass": "icon-street-view",
                 "activateHandler": "activateStreetSmart",
-                "deactivateHandler": "deactivateStreetSmart",
-                "rules": {
-                    "subLayoutNames": [
-                        "desktop",
-                        "tablet_landscape",
-                        "tablet_portrait"
-                    ],
-                    "ruleSuccessProperty": "visibility"
-                }
+                "deactivateHandler": "deactivateStreetSmart"
             },
             "references": [
                 {
