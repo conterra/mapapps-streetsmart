@@ -46,13 +46,13 @@ export default class MarkerController {
     }
 
     deactivate() {
+        this._removeMarker();
+        this._removeWatcher();
         this.#sketchViewModel = null;
         this.#graphicsLayer = null;
         this.#markerGraphic = null;
         this.#angle = 0;
         this.#state = "normal";
-        this._removeMarker();
-        this._removeWatcher();
     }
 
     activateMarker() {

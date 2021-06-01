@@ -67,23 +67,23 @@ export default class StreetSmartController {
             overlayDrawDistance: streetSmartProperties.overlayDrawDistance,
             addressSettings: streetSmartProperties.addressSettings
         }).then(() => {
-            console.log("StreetSmart API initialized");
-            this._openPanorama(null, true);
-        },
-        err => {
-            const msg = err.stack.toString();
-            this._logger.error(msg);
-            this._setProcessingStreetSmart(false);
-            console.error("Api: init: failed. Error: ", err);
-        }
+                console.log("StreetSmart API initialized");
+                this._openPanorama(null, true);
+            },
+            err => {
+                const msg = err.stack.toString();
+                this._logger.error(msg);
+                this._setProcessingStreetSmart(false);
+                console.error("Api: init: failed. Error: ", err);
+            }
         );
     }
 
     _openPanorama(point, firstOpen) {
-        if(!this.#streetSmartAPI) {
+        if (!this.#streetSmartAPI) {
             return;
         }
-        if(!point) {
+        if (!point) {
             const mapWidgetModel = this._mapWidgetModel;
             point = mapWidgetModel.center;
         }
@@ -200,22 +200,12 @@ export default class StreetSmartController {
 
     _removeWatcher() {
         this.#streetSmartWatcher.forEach((watcher) => {
-            watcher.removeListener();
+            watcher?.removeListener();
         })
         this.#streetSmartWatcher = [];
-        try {
-            this.#clickWatcher.remove();
-        } catch (err) {
-            console.warn(err);
-        }
+        this.#clickWatcher?.remove();
         this.#clickWatcher = null;
-        this.#clickWatcher = null;
-        this.#markerWatcher.remove();
-        try {
-            this.#markerWatcher.remove();
-        } catch (err) {
-            console.warn(err);
-        }
+        this.#markerWatcher?.remove();
         this.#markerWatcher = null;
     }
 
@@ -270,10 +260,10 @@ export default class StreetSmartController {
             const toolType = event?.toolEventInfo?.type;
             if (toolType === "move-stop") {
                 const point = this._markerController.getPosition();
-                if(!point) {
+                if (!point) {
                     return;
                 }
-                if(this._tool.active){
+                if (this._tool.active) {
                     this._openPanorama(point);
                 }
             }
@@ -342,7 +332,7 @@ export default class StreetSmartController {
 
     _centerOnMarker(scale) {
         const point = this._markerController.getPosition();
-        if(!point){
+        if (!point) {
             return;
         }
         const mapWidgetModel = this._mapWidgetModel;
