@@ -15,6 +15,28 @@ To make the functions of this bundle available to the user, the following tool c
 
 ## Configuration Reference
 
+### Window configuration
+
+You can either use the default map.apps template (template-seasons) if you want to display the Streetsmart widget in a window. This has the disadvantage that the map is overlaid by the widget.
+
+```json
+"allowedBundles": [
+    ...
+    "dn_streetsmart",
+    "template-seasons"
+],
+```
+
+Or you can use the template-streetsmart, which provides its own anchor point for the Streetsmart widget.
+
+```json
+"allowedBundles": [
+    ...
+    "dn_streetsmart",
+    "template-streetsmart"
+],
+```
+
 ### Config
 
 #### Sample configuration
