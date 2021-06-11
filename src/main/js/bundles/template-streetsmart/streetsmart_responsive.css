@@ -1,0 +1,121 @@
+/**
+ * Copyright (C) 2020 con terra GmbH (info@conterra.de)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/*------------------------------
+    MOBILE DEVICE OPTIMIZING
+--------------------------------*/
+
+/*hide button texts for footer buttons and add icons instead to save room*/
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ct-application-footer {
+    align-items: flex-start;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ct-application-footer .ctWindowDockingBar .ctWindowTabButton .dijitIcon,
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ct-application-sidebar .ctWindowDockingBar .ctWindowTabButton .dijitIcon {
+    display: block;
+}
+.ctTpl_streetsmart[class*='ctLayout_tablet_'] .ct-application-footer.dijitContentPane {
+    overflow: hidden;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ct-application-footer .ctWindowDockingBar .ctWindowTabButton .dijitButtonNode {
+    padding: .55rem;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ct-application-sidebar .ctWindowDockingBar .ctWindowTabButton .dijitIcon:before,
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ct-application-footer .ctWindowDockingBar .ctWindowTabButton .dijitIcon:before {
+    font-size: 1.6rem;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ctWindowDockingBar .ctWindowTabButton .dijitButtonText,
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .ct-application-sidebar .ctWindowDockingBar .ctWindowTabButton .dijitButtonText {
+    display: none;
+}
+.ctTpl_streetsmart .omnisearch--flex-width {
+    max-width: 20em;
+    width: calc(100vw - 50px);
+}
+.ctTpl_streetsmart .ct-main-app-menu + .omnisearch--flex-width {
+    width: calc(100vw - 90px);
+}
+
+.ctTpl_streetsmart[class*='ctLayout_mobile_landscape'] .omnisearch--flex-width {
+    width: calc(100vw - 90px - 50px); /*aditional width reduction due to sidebar width*/
+}
+
+.ctTpl_streetsmart .ct-application-sidebar .dockingBarLeft:not(:empty) {
+    width: 50px;
+}
+.ctTpl_streetsmart .ct-application-sidebar .ctWindowTabButton {
+    height: auto
+}
+.ctTpl_streetsmart .mobileWindow {
+    animation-duration: 0s;
+    box-shadow: none;
+}
+
+.ctTpl_streetsmart[class*='ctLayout_mobile_landscape'] .ct-application-sidebar .ctTool {
+    display: block;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_landscape'] .ct-application-sidebar .ctWindowDockingBar .ctWindowTabButton .dijitButtonNode {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_landscape'] .ct-application-sidebar .ctWindowDockingBar .ctWindowTabButton .dijitIcon {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .followMe .col1,
+.ctTpl_streetsmart[class*='ctLayout_tablet_landscape'] .followMe .col1 {
+    display: block;
+    float: none;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .followMe .ctFollowMeAttendees,
+.ctTpl_streetsmart[class*='ctLayout_tablet_landscape'] .followMe .ctFollowMeAttendees {
+    margin: 0;
+    margin-top: 30px;
+    border: none;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .followMe .ctFollowMeAttendeesList,
+.ctTpl_streetsmart[class*='ctLayout_tablet_landscape'] .followMe .ctFollowMeAttendeesList {
+    margin: 0;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .followMe .ctFollowMeAttendeesList ul,
+.ctTpl_streetsmart[class*='ctLayout_tablet_landscape'] .followMe .ctFollowMeAttendeesList ul {
+    height: auto;
+}
+.ctTpl_streetsmart[class*='ctLayout_mobile_'] .followMe .ctFollowMeAttendeesList li,
+.ctTpl_streetsmart[class*='ctLayout_tablet_landscape'] .followMe .ctFollowMeAttendeesList li {
+    float: none;
+}
+.ctTpl_streetsmart .mobileWindow .ctBasemapGallery {
+    overflow-y: auto;
+}
+.ctTpl_streetsmart .mobileWindow .ctBasemapGallery .esriBasemapGalleryNode {
+    display: block;
+    float: left;
+}
+@media (max-width: 544px) {
+    .ctTpl_streetsmart .ctUserButton .dijitButtonText,
+    .ctTpl_streetsmart .ct-application-header__app-title,
+    .ctTpl_streetsmart .ctAppManagmentButton .dijitButtonText {
+        display: none;
+    }
+    .ctTpl_streetsmart .ct-application-header__logo,
+    .ctTpl_streetsmart .ct-application-header__app-title,
+    .ctTpl_streetsmart .ct-application-header .ctUserNameValue {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .ctTpl_streetsmart .appsOverview .ct-data-view__toolbar {
+        min-height: 7rem;
+    }
+}

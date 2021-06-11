@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import Point from "esri/geometry/Point";
+import dijitRegistry from "dijit/registry";
 
 export default class StreetSmartController {
 
@@ -23,6 +24,7 @@ export default class StreetSmartController {
     #clickWatcher = null;
     #markerWatcher = null;
     #panorama = null;
+    #initialViewPadding = null;
 
     activate() {
         this.#streetSmartWatcher = [];
@@ -37,11 +39,24 @@ export default class StreetSmartController {
     }
 
     activateStreetSmart(event) {
-        this._tool = event.tool;
+        this._tool = event?.tool;
         this._createMarker();
         this._openPanorama();
         this._setStreetSmartLayerVisibility(true);
         this._registerWatcher();
+
+        const templateBorderContainer = dijitRegistry.byId("templateBorderContainer");
+        if (!templateBorderContainer) {
+            const view = this._mapWidgetModel.view;
+            this.#initialViewPadding = view.padding;
+            view.padding.right = view.width / 2;
+            return;
+        }
+        const streetSmartDiv = document.getElementsByClassName("dn_streetsmart__container");
+        if (streetSmartDiv.length) {
+            streetSmartDiv[0].classList.add("active");
+        }
+        templateBorderContainer.resize();
     }
 
     deactivateStreetSmart() {
@@ -51,6 +66,21 @@ export default class StreetSmartController {
 
         this._measurementController.removeMeasurements();
         this._markerController.deactivateMarker();
+
+        const templateBorderContainer = dijitRegistry.byId("templateBorderContainer");
+        if (!templateBorderContainer) {
+            const view = this._mapWidgetModel.view;
+            if (this.#initialViewPadding) {
+                view.padding = this.#initialViewPadding;
+                this.#initialViewPadding = null;
+            }
+            return;
+        }
+        const streetSmartDiv = document.getElementsByClassName("dn_streetsmart__container");
+        if (streetSmartDiv.length) {
+            streetSmartDiv[0].classList.remove("active");
+        }
+        templateBorderContainer.resize();
     }
 
     initStreetSmartAPI(streetSmartAPI, streetSmartDiv) {
@@ -340,18 +370,6 @@ export default class StreetSmartController {
         if (scale) {
             mapWidgetModel.scale = scale;
         }
-        this._centerMapOnHalfWindow();
-    }
-
-    _centerMapOnHalfWindow() {
-        const mapWidgetModel = this._mapWidgetModel;
-        const extent = mapWidgetModel.extent;
-        const difx = extent.xmax - extent.xmin;
-        const difIntx = difx / 4;
-        const center = mapWidgetModel.center;
-        const newCenter = center.clone();
-        newCenter.x = center.x + difIntx;
-        mapWidgetModel.center = newCenter;
     }
 
 }

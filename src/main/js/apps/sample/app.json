@@ -13,7 +13,6 @@
             "notifier",
             "splashscreen",
             "templatelayout",
-            "template-seasons",
             "theme-everlasting",
             "theme-winter",
             "theme-spring",
@@ -34,7 +33,9 @@
             "coordinateviewer",
             "toolrules",
             "custominfo",
-            "dn_streetsmart"
+            "popups-default",
+            "dn_streetsmart",
+            "template-streetsmart"
         ],
         "require": [
             "${app}.app"
@@ -47,9 +48,9 @@
         "dn_streetsmart": {
             "Config": {
                 "streetSmartProperties": {
-                    "apiKey": "",
-                    "username": "",
-                    "password": "",
+                    "apiKey": "yz0NOPgBSPwZ2zUVKTo1qbg9abAR-LwxOX81a7MpeTsdKjgBmzgRanEtaPsdO3kJ",
+                    "username": "conterra@stsm",
+                    "password": "y5n9eb2k",
                     "srs": "EPSG:25832",
                     "locale": "de",
                     "overlayDrawDistance": 30,
@@ -555,7 +556,7 @@
             "TemplateModel": {
                 "_templates": [
                     {
-                        "name": "seasons",
+                        "name": "streetsmart",
                         "widgets": [
                             {
                                 "widgetRole": "drawer_button",
@@ -609,7 +610,8 @@
                             "zoomInTool",
                             "zoomOutTool",
                             "compassTool",
-                            "restoreInitialViewTool"
+                            "restoreInitialViewTool",
+                            "streetSmartToggleTool"
                         ],
                         "registerWidget": {
                             "widgetRole": "mapview_tools"
@@ -637,7 +639,8 @@
         "toolrules": {
             "ToolActiveStateManager": {
                 "activateOnStartToolIds": [
-                    "IMPRINT_Imprint_CustomInfoTool"
+                    "IMPRINT_Imprint_CustomInfoTool",
+                    "streetSmartToggleTool"
                 ]
             }
         }

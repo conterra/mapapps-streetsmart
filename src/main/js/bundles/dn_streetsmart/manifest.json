@@ -18,6 +18,58 @@
     "layout-widgets": [
         {
             "widgetRole": "streetSmartWidget",
+            "template": "streetsmart",
+            "attachTo": "streetsmart"
+        },
+        {
+            "widgetRole": "streetSmartWidget",
+            "template": "streetsmart",
+            "sublayout": [
+                "mobile_portrait"
+            ],
+            "window": {
+                "dockTool": "streetSmartToggleTool",
+                "collapsable": true,
+                "resizable": false,
+                "draggable": false,
+                "marginBox": {
+                    "t": 0,
+                    "b": 40,
+                    "r": 0,
+                    "l": 0
+                },
+                "collapseAxis": {
+                    "l": true
+                },
+                "windowClass": "noPadding"
+            }
+        },
+        {
+            "widgetRole": "streetSmartWidget",
+            "template": "streetsmart",
+            "sublayout": [
+                "mobile_landscape"
+            ],
+            "window": {
+                "dockTool": "streetSmartToggleTool",
+                "collapsable": true,
+                "resizable": false,
+                "draggable": false,
+                "marginBox": {
+                    "t": 0,
+                    "b": 0,
+                    "r": 0,
+                    "w": "50%"
+                },
+                "collapseAxis": {
+                    "l": true
+                },
+                "windowClass": "noPadding"
+            }
+        },
+        {
+            "widgetRole": "streetSmartWidget",
+            "template": "seasons",
             "window": {
                 "dockTool": "streetSmartToggleTool",
                 "dockable": true,
@@ -35,6 +87,7 @@
         },
         {
             "widgetRole": "streetSmartWidget",
+            "template": "seasons",
             "sublayout": [
                 "desktop",
                 "tablet_landscape",
@@ -51,6 +104,7 @@
         },
         {
             "widgetRole": "streetSmartWidget",
+            "template": "seasons",
             "sublayout": [
                 "mobile_portrait"
             ],
@@ -65,6 +119,7 @@
         },
         {
             "widgetRole": "streetSmartWidget",
+            "template": "seasons",
             "sublayout": [
                 "mobile_landscape"
             ],
@@ -109,6 +164,10 @@
                 {
                     "name": "_logger",
                     "providing": "ct.framework.api.LogService"
+                },
+                {
+                    "name": "_appCtx",
+                    "providing": "ct.framework.api.ApplicationContext"
                 }
             ]
         },

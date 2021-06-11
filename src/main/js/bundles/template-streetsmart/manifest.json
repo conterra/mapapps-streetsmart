@@ -1,0 +1,888 @@
+{
+	"name": "template-streetsmart",
+	"version": "1.1.3-SNAPSHOT",
+	"title": "Streetsmart Template",
+	"description": "This bundle provides the 'streetsmart' layout-template with responsive capabilities and predefined anchor-points.",
+	"vendor": "con terra GmbH",
+	"keywords": [
+		"layout"
+	],
+	"main": "",
+	"layer": "module",
+	"i18n": [],
+	"startLevel": 1,
+	"bundle": true,
+    "productName": "devnet-mapapps-streetsmart",
+	"layout-templates": [
+		{
+			"name": "streetsmart",
+			"file": "streetsmart",
+			"location": "."
+		}
+	],
+	"layout-widgets": [
+		{
+			"widgetRole": "appsOverview",
+			"template": "streetsmart",
+			"sublayout": [
+				"tablet_landscape",
+				"tablet_portrait"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockTool": "appsOverviewToggleTool"
+			}
+		},
+		{
+			"widgetRole": "appsOverview",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockTool": "appsOverviewToggleTool",
+				"dockable": true,
+				"dockingBar": "${id}-dockingBarLeft"
+			}
+		},
+		{
+			"widgetRole": "appsOverview",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockTool": "appsOverviewToggleTool",
+				"dockable": true,
+				"dockingBar": "${id}-dockingBarBottomLeft"
+			}
+		},
+		{
+			"widgetRole": "sharelink",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"dockTool": "sharelinkTool",
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 435,
+					"h": 140
+				}
+			}
+		},
+		{
+			"widgetRole": "sharelink",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockTool": "sharelinkTool",
+				"dockable": true,
+				"dockingBar": "${id}-dockingBarLeft",
+				"marginBox": {
+					"w": "100%",
+					"h": 140,
+					"b": 0
+				}
+			}
+		},
+		{
+			"widgetRole": "sharelink",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockTool": "sharelinkTool",
+				"dockable": true,
+				"dockingBar": "${id}-dockingBarBottomLeft",
+				"marginBox": {
+					"w": "100%",
+					"h": 140,
+					"b": 0
+				}
+			}
+		},
+		{
+			"widgetRole": "legend",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"dockable": true,
+				"dockingBar": "${id}-dockingBarBottomRight",
+				"marginBox": {
+					"w": 280,
+					"h": 295,
+					"l": 25,
+					"b": 58
+				}
+			}
+		},
+		{
+			"widgetRole": "legend",
+			"template": "streetsmart",
+			"sublayout": [
+				"tablet_portrait",
+				"tablet_landscape"
+			],
+			"attachTo": "full-screen-window",
+			"priority": 1,
+			"nomerge": true,
+			"window": {
+				"dockable": true,
+				"dockingBar": "${id}-dockingBarBottomRight",
+				"dockTool": "legendToggleTool"
+			}
+		},
+		{
+			"widgetRole": "legend",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockable": true,
+				"dockTool": "legendToggleTool",
+				"dockingBar": "${id}-dockingBarLeft"
+			}
+		},
+		{
+			"widgetRole": "legend",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockable": true,
+				"dockTool": "legendToggleTool",
+				"dockingBar": "${id}-dockingBarBottomLeft"
+			}
+		},
+		{
+			"widgetRole": "editing",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 435,
+					"h": 550
+				}
+			}
+		},
+		{
+			"widgetRole": "editing",
+			"template": "streetsmart",
+			"sublayout": ["mobile_landscape", "mobile_portrait"],
+			"priority": 1,
+			"window": {
+				"resizable": false,
+				"draggable": false,
+				"fixEdgesInViewPort": {
+					"l": true,
+					"b": true,
+					"r": true
+				},
+				"marginBox": {
+					"l": 0,
+					"h": 285,
+					"r": 0,
+					"b": 0
+				}
+			}
+		},
+		{
+			"widgetRole": "printing",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"dockTool": "printingToggleTool",
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 435,
+					"h": 550
+				}
+			}
+		},
+		{
+			"widgetRole": "printing",
+			"template": "streetsmart",
+			"sublayout": [
+				"tablet_portrait",
+				"tablet_landscape"
+			],
+			"attachTo": "full-screen-window",
+			"priority": 1,
+			"nomerge": true,
+			"window": {
+				"dockTool": "printingToggleTool"
+			}
+		},
+		{
+			"widgetRole": "printing",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockable": true,
+				"dockTool": "printingToggleTool",
+				"dockingBar": "${id}-dockingBarLeft"
+			}
+		},
+		{
+			"widgetRole": "printing",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"attachTo": "full-screen-window",
+			"nomerge": true,
+			"priority": 1,
+			"window": {
+				"dockable": true,
+				"dockTool": "printingToggleTool",
+				"dockingBar": "${id}-dockingBarBottomLeft"
+			}
+		},
+		{
+			"widgetRole": "omniSearch",
+			"template": "streetsmart",
+			"sublayout": [
+				"desktop"
+			],
+			"cssClass": "omnisearch",
+			"attachTo": "map_topleft",
+			"props": {
+				"layoutIndex": 1
+			}
+		},
+		{
+			"widgetRole": "omniSearchMobile",
+			"template": "streetsmart",
+			"sublayout": [
+				"tablet_portrait",
+				"tablet_landscape",
+				"mobile_landscape",
+				"mobile_portrait"
+			],
+			"attachTo": "map_topleft",
+			"cssClass": "omnisearch omnisearch--flex-width",
+			"props": {
+				"layoutIndex": 1
+			}
+		},
+		{
+			"widgetRole": "map",
+			"template": "streetsmart",
+			"attachTo": "mapPlaceHolder"
+		},
+		{
+			"widgetRole": "coordinateviewer",
+			"template": "streetsmart",
+			"sublayout": [
+				"desktop",
+				"tablet_landscape",
+				"tablet_portrait"
+			],
+			"attachTo": "footer_right",
+			"props": {
+				"layoutIndex": 2
+			}
+		},
+		{
+			"widgetRole": "builderWizardButton",
+			"template": "streetsmart",
+			"cssClass": "builderWizardBtn ctPrimaryInput",
+			"attachTo": "header_right",
+			"props": {
+				"layoutIndex": 7
+			}
+		},
+		{
+			"widgetRole": "builderWizardButton",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape",
+				"mobile_portrait"
+			],
+			"cssClass": "builderWizardBtn ctPrimaryInput",
+			"attachTo": "map_topright"
+		},
+		{
+			"widgetRole": "themeSelector",
+			"template": "streetsmart",
+			"sublayout": [
+				"desktop"
+			],
+			"attachTo": "header_right",
+			"cssClass": "styleToggler",
+			"props": {
+				"layoutIndex": 1
+			}
+		},
+		{
+			"widgetRole": "templateSelector",
+			"template": "streetsmart",
+			"sublayout": [
+				"desktop"
+			],
+			"attachTo": "header_right",
+			"cssClass": "viewToggler",
+			"props": {
+				"layoutIndex": 2
+			}
+		},
+		{
+			"widgetRole": "dropDownBaseMapToggler",
+			"template": "streetsmart",
+			"attachTo": "header_right",
+			"props": {
+				"layoutIndex": 3
+			}
+		},
+		{
+			"widgetRole": "languageToggler",
+			"template": "streetsmart",
+			"attachTo": "header_right",
+			"props": {
+				"layoutIndex": 4
+			}
+		},
+		{
+			"widgetRole": "authenticationInfo",
+			"template": "streetsmart",
+			"attachTo": "header_right",
+			"props": {
+				"layoutIndex": 6
+			}
+		},
+		{
+			"widgetRole": "authenticationInfo",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape",
+				"mobile_portrait"
+			],
+			"attachTo": "footer_right"
+		},
+		{
+			"widgetRole": "logoutWarning",
+			"template": "streetsmart",
+			"attachTo": "header_right",
+			"props": {
+				"layoutIndex": 0
+			}
+		},
+		{
+			"widgetRole": "banner",
+			"template": "streetsmart",
+			"attachTo": "map_topright"
+		},
+		{
+			"widgetRole": "basemapswitcher",
+			"template": "streetsmart",
+			"attachTo": "map_bottomleft"
+		},
+		{
+			"widgetRole": "layerlist",
+			"template": "streetsmart",
+			"attachTo": "map_topright"
+		},
+		{
+			"widgetRole": "tocWidget",
+			"sublayout": [
+				"desktop",
+				"tablet_landscape",
+				"tablet_portrait"
+			],
+			"window": {
+				"dockingBar": "${id}-dockingBarBottomLeft",
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"h": 450,
+					"w": 435
+				},
+				"fixEdgesInViewPort": {
+					"r": false,
+					"b": true,
+					"t": true,
+					"l": true
+				}
+			}
+		},
+		{
+			"widgetRole": "tocWidget",
+			"sublayout": [
+				"mobile_landscape",
+				"mobile_portrait"
+			],
+			"attachTo": "full-screen-window",
+			"window": {
+				"marginBox": {
+					"b": 0,
+					"t": 0,
+					"r": 0,
+					"l": 0
+				},
+				"fixEdgesInViewPort": {
+					"r": true,
+					"b": true,
+					"t": true,
+					"l": true
+				}
+			}
+		},
+		{
+			"widgetRole": "tocWidget",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"window": {
+				"dockingBar": "${id}-dockingBarBottomLeft"
+			}
+		},
+		{
+			"widgetRole": "tocWidget",
+			"sublayout": [
+				"mobile_landscape"
+			],
+			"window": {
+				"dockingBar": "${id}-dockingBarLeft"
+			}
+		},
+		{
+			"widgetRole": "slideSelector",
+			"template": "streetsmart",
+			"window": {
+				"dockable": true,
+				"dockingBar": "${id}-dockingBarBottomRight",
+				"minimizeOnClose": true,
+				"marginBox": {
+					"l": 25,
+					"b": 60
+				}
+			}
+		},
+		{
+			"widgetRole": "slideSelector",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"window": {
+				"dockingBar": "${id}-dockingBarBottomLeft",
+				"marginBox": {
+					"l": 0,
+					"r": 0,
+					"b": 40
+				}
+			}
+		},
+		{
+			"widgetRole": "slideSelector",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape"
+			],
+			"window": {
+				"dockingBar": "${id}-dockingBarLeft",
+				"marginBox": {
+					"l": 40,
+					"r": 0,
+					"b": 0
+				}
+			}
+		},
+		{
+			"widgetRole": "mapview_tools",
+			"template": "streetsmart",
+			"attachTo": "map_bottomright"
+		},
+		{
+			"widgetRole": "selection-ui",
+			"template": "streetsmart",
+			"window": {
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 435,
+					"h": 230
+				}
+			}
+		},
+		{
+			"widgetRole": "selection-ui",
+			"sublayout": [
+				"mobile_portrait",
+				"mobile_landscape"
+			],
+			"template": "streetsmart",
+			"window": {
+				"resizable": false,
+				"draggable": false
+			}
+		},
+		{
+			"widgetRole": "selection-ui",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"template": "streetsmart",
+			"window": {
+				"marginBox": {
+					"l": 0,
+					"r": 0,
+					"h": 300,
+					"b": 40
+				},
+				"fixEdgesInViewPort": {
+					"r": true,
+					"l": true,
+					"b": true,
+					"t": false
+				}
+			}
+		},
+		{
+			"widgetRole": "selection-ui",
+			"sublayout": [
+				"mobile_landscape"
+			],
+			"template": "streetsmart",
+			"window": {
+				"marginBox": {
+					"t": 0,
+					"r": 0,
+					"b": 0,
+					"w": 300
+				},
+				"fixEdgesInViewPort": {
+					"r": true,
+					"l": false,
+					"b": true,
+					"t": true
+				}
+			}
+		},
+		{
+			"widgetRole": "resultCenter",
+			"template": "streetsmart",
+			"window": {
+				"windowClass": "noTitleBar",
+				"dockingBar": "${id}-dockingBarBottomLeft",
+				"marginBox": {
+					"l": 0,
+					"h": 400,
+					"r": 0,
+					"b": 41
+				},
+				"resizeAxis": {
+					"t": true,
+					"b": false,
+					"l": false,
+					"r": false
+				},
+				"draggable": false,
+				"fixEdgesInViewPort": {
+					"t": false
+				}
+			}
+		},
+		{
+			"widgetRole": "distanceMeasurement2D",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 260,
+					"h": 240
+				}
+			}
+		},
+		{
+			"widgetRole": "distanceMeasurement2D",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"priority": 1,
+			"window": {
+				"resizable": false,
+				"draggable": false,
+				"fixEdgesInViewPort": {
+					"l": true,
+					"b": true,
+					"r": true
+				},
+				"marginBox": {
+					"l": 0,
+					"h": 245,
+					"r": 0,
+					"b": 0
+				}
+			}
+		},
+        {
+            "widgetRole": "distanceMeasurement2D",
+            "template": "streetsmart",
+            "sublayout": [
+                "mobile_landscape"
+            ],
+            "priority": 1,
+            "window": {
+                "resizable": false,
+                "draggable": false,
+                "fixEdgesInViewPort": {
+                    "l": true,
+                    "b": true
+                },
+                "marginBox": {
+                    "t": 0,
+                    "l": 0,
+                    "b": 0,
+                    "w": 220
+                }
+            }
+        },
+		{
+			"widgetRole": "areaMeasurement2D",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 260,
+					"h": 320
+				}
+			}
+		},
+		{
+			"widgetRole": "areaMeasurement2D",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"priority": 1,
+			"window": {
+				"resizable": false,
+				"draggable": false,
+				"fixEdgesInViewPort": {
+					"l": true,
+					"b": true,
+					"r": true
+				},
+				"marginBox": {
+					"l": 0,
+					"h": 320,
+					"r": 0,
+					"b": 0
+				}
+			}
+		},
+        {
+            "widgetRole": "areaMeasurement2D",
+            "template": "streetsmart",
+            "sublayout": [
+                "mobile_landscape"
+            ],
+            "priority": 1,
+            "window": {
+                "resizable": false,
+                "draggable": false,
+                "fixEdgesInViewPort": {
+                    "l": true,
+                    "b": true
+                },
+                "marginBox": {
+                    "t": 0,
+                    "l": 0,
+                    "b": 0,
+                    "w": 220
+                }
+            }
+        },
+		{
+			"widgetRole": "lineMeasurement3D",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 435,
+					"h": 235
+				}
+			}
+		},
+		{
+			"widgetRole": "lineMeasurement3D",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"priority": 1,
+			"window": {
+				"resizable": false,
+				"draggable": false,
+				"fixEdgesInViewPort": {
+					"l": true,
+					"b": true,
+					"r": true
+				},
+				"marginBox": {
+					"l": 0,
+					"h": 235,
+					"r": 0,
+					"b": 0
+				}
+			}
+		},
+        {
+            "widgetRole": "lineMeasurement3D",
+            "template": "streetsmart",
+            "sublayout": [
+                "mobile_landscape"
+            ],
+            "priority": 1,
+            "window": {
+                "resizable": false,
+                "draggable": false,
+                "fixEdgesInViewPort": {
+                    "l": true,
+                    "b": true
+                },
+                "marginBox": {
+                    "t": 0,
+                    "l": 0,
+                    "b": 0,
+                    "w": 220
+                }
+            }
+        },
+		{
+			"widgetRole": "areaMeasurement3D",
+			"template": "streetsmart",
+			"priority": 1,
+			"window": {
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 435,
+					"h": 230
+				}
+			}
+		},
+		{
+			"widgetRole": "areaMeasurement3D",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_portrait"
+			],
+			"priority": 1,
+			"window": {
+				"resizable": false,
+				"draggable": false,
+				"fixEdgesInViewPort": {
+					"l": true,
+					"b": true,
+					"r": true
+				},
+				"marginBox": {
+					"l": 0,
+					"h": 230,
+					"r": 0,
+					"b": 0
+				}
+			}
+		},
+        {
+            "widgetRole": "areaMeasurement3D",
+            "template": "streetsmart",
+            "sublayout": [
+                "mobile_landscape"
+            ],
+            "priority": 1,
+            "window": {
+                "resizable": false,
+                "draggable": false,
+                "fixEdgesInViewPort": {
+                    "l": true,
+                    "b": true
+                },
+                "marginBox": {
+                    "t": 0,
+                    "l": 0,
+                    "b": 0,
+                    "w": 220
+                }
+            }
+        },
+		{
+			"widgetRole": "coordinateconversion",
+			"template": "streetsmart",
+			"window": {
+				"marginBox": {
+					"l": 20,
+					"t": 125,
+					"w": 435,
+					"h": 255
+				}
+			}
+		},
+		{
+			"widgetRole": "coordinateconversion",
+			"template": "streetsmart",
+			"sublayout": [
+				"mobile_landscape",
+				"mobile_portrait"
+			],
+			"window": {
+				"resizable": false,
+				"draggable": false,
+				"fixEdgesInViewPort": {
+					"l": true,
+					"b": true,
+					"r": true
+				},
+				"marginBox": {
+					"l": 0,
+					"h": "50%",
+					"r": 0,
+					"b": 0
+				}
+			}
+		}
+	]
+}
