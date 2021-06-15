@@ -19,7 +19,7 @@ To make the functions of this bundle available to the user, the following tool c
 
 You can either use the default map.apps template (template-seasons) if you want to display the Streetsmart widget in a window. This has the disadvantage that the map is overlaid by the widget.
 
-```json
+```javascript
 "allowedBundles": [
     ...
     "dn_streetsmart",
@@ -29,7 +29,7 @@ You can either use the default map.apps template (template-seasons) if you want 
 
 Or you can use the template-streetsmart, which provides its own anchor point for the Streetsmart widget.
 
-```json
+```javascript
 "allowedBundles": [
     ...
     "dn_streetsmart",
