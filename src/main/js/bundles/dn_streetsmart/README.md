@@ -64,19 +64,19 @@ Or you can use the template-streetsmart, which provides its own anchor point for
     "markerSymbols": {
         "normal": {
             "type": "picture-marker",
-            "url": "resource('./images/streetViewMarker.png')",
+            "url": "resource('./images/green/streetViewMarker.png')",
             "width": 30,
             "height": 30
         },
         "dragging": {
             "type": "picture-marker",
-            "url": "resource('./images/streetViewMarkerDragging.png')",
+            "url": "resource('./images/green/streetViewMarkerDragging.png')",
             "width": 30,
             "height": 30
         },
         "available": {
             "type": "picture-marker",
-            "url": "resource('./images/streetViewMarkerAvailable.png')",
+            "url": "resource('./images/green/streetViewMarkerAvailable.png')",
             "width": 30,
             "height": 30
         }
@@ -142,6 +142,21 @@ Or you can use the template-streetsmart, which provides its own anchor point for
         }
     }
 }
+```
+
+#### Change the marker color
+
+You can use green, blue, orange or pink markers. To change the color you need to change the image-urls:
+
+```javascript
+# green
+"url": "resource('./images/green/streetViewMarker.png')"
+# blue
+"url": "resource('./images/blue/streetViewMarker.png')"
+# orange
+"url": "resource('./images/orange/streetViewMarker.png')"
+# pink
+"url": "resource('./images/pink/streetViewMarker.png')"
 ```
 
 #### PanormaViewer sample configurations
