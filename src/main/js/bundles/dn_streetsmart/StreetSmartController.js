@@ -25,6 +25,7 @@ export default class StreetSmartController {
     #markerWatcher = null;
     #panorama = null;
     #initialViewPadding = null;
+    #firstOpen = true;
 
     activate() {
         this.#streetSmartWatcher = [];
@@ -60,6 +61,7 @@ export default class StreetSmartController {
     }
 
     deactivateStreetSmart() {
+        this.#firstOpen = true;
         this._removeWatcher();
         this._setProcessingStreetSmart(false);
         this._setStreetSmartLayerVisibility(false);
@@ -98,7 +100,10 @@ export default class StreetSmartController {
             addressSettings: streetSmartProperties.addressSettings
         }).then(() => {
                 console.log("StreetSmart API initialized");
-                this._openPanorama(null, true);
+                const tool = this._tool;
+                if(tool?.active) {
+                    this._openPanorama();
+                }
             },
             err => {
                 const msg = err.stack.toString();
@@ -109,7 +114,7 @@ export default class StreetSmartController {
         );
     }
 
-    _openPanorama(point, firstOpen) {
+    _openPanorama(point) {
         if (!this.#streetSmartAPI) {
             return;
         }
@@ -136,7 +141,8 @@ export default class StreetSmartController {
                         const panorama = this.#panorama = result[0];
                         const recording = panorama.props.recording;
                         this._updateMarkerPosition(recording);
-                        if (firstOpen) {
+                        if (this.#firstOpen) {
+                            this.#firstOpen = false;
                             this._registerWatcher();
                             this._panoramaViewerCustomMethod(panorama);
                         }
@@ -293,7 +299,7 @@ export default class StreetSmartController {
                 if (!point) {
                     return;
                 }
-                if (this._tool.active) {
+                if (this._tool?.active) {
                     this._openPanorama(point);
                 }
             }
