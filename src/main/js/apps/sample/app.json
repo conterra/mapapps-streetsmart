@@ -35,7 +35,7 @@
             "custominfo",
             "popups-default",
             "dn_streetsmart",
-            "template-streetsmart"
+            "template-seasons"
         ],
         "require": [
             "${app}.app"
@@ -48,9 +48,9 @@
         "dn_streetsmart": {
             "Config": {
                 "streetSmartProperties": {
-                    "apiKey": "yz0NOPgBSPwZ2zUVKTo1qbg9abAR-LwxOX81a7MpeTsdKjgBmzgRanEtaPsdO3kJ",
-                    "username": "conterra@stsm",
-                    "password": "y5n9eb2k",
+                    "apiKey": "",
+                    "username": "",
+                    "password": "",
                     "srs": "EPSG:25832",
                     "locale": "de",
                     "overlayDrawDistance": 30,
