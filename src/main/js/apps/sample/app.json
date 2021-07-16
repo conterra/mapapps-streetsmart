@@ -35,7 +35,7 @@
             "custominfo",
             "popups-default",
             "dn_streetsmart",
-            "template-seasons"
+            "template-streetsmart"
         ],
         "require": [
             "${app}.app"
