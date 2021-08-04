@@ -35,7 +35,8 @@ export default class ChartingDashboardWidgetFactory {
 
         this.#iFrameContent.getIFrameWindow().then((iFrameWindow) => {
             if (iFrameWindow?.streetSmartAPI) {
-                this._streetSmartController.initStreetSmartAPI(iFrameWindow.streetSmartAPI, iFrameWindow.streetSmartDiv);
+                const div = iFrameWindow.document.getElementById("streetSmartDiv");
+                this._streetSmartController.initStreetSmartAPI(iFrameWindow.streetSmartAPI, div);
             }
         });
     }
