@@ -57,7 +57,7 @@ export default class MarkerController {
 
     activateMarker() {
         this._registerWatcher();
-        this._mapWidgetModel.map.reorder(graphicsLayer, 999)
+        this._mapWidgetModel.map.reorder(this.#graphicsLayer, 999)
     }
 
     deactivateMarker() {
