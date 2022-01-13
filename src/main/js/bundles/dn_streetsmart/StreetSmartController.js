@@ -133,7 +133,7 @@ export default class StreetSmartController {
                 panoramaViewer: {
                     replace: true,
                     closable: false,
-                    maximizable: false
+                    maximizable: this.#streetSmartProperties.panoramaViewerMaximizable
                 }
             }).then(
                 result => {
