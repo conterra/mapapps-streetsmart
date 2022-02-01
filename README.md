@@ -1,6 +1,9 @@
 # Street Smart Bundle
 The Street Smart Bundle uses the Cyclorama functionality to allow the user to select a location on the map and see Street Smart images for that location in a separated window.
 
+## Build Status
+[![devnet-bundle-snapshot](https://github.com/conterra/mapapps-streetsmart/actions/workflows/devnet-bundle-snapshot.yml/badge.svg)](https://github.com/conterra/mapapps-streetsmart/actions/workflows/devnet-bundle-snapshot.yml)
+
 ## Installation Guide
 **Requirement: map.apps 4.7.0**
 
