@@ -58,7 +58,8 @@ Or you can use the template-streetsmart, which provides its own anchor point for
             "parameters": {
                 "coordinate": [356491.961,5645458.686]
             }
-        }
+        },
+        "panoramaViewerMaximizable": false
     },
     "streetSmartLayerId": null,
     "markerSymbols": {
