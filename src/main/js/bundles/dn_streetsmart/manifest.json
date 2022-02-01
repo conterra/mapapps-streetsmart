@@ -190,7 +190,8 @@
                         "locale": "de",
                         "database": "Nokia"
                     },
-                    "panoramaViewerInstance": null
+                    "panoramaViewerInstance": null,
+                    "panoramaViewerMaximizable": false
                 },
                 "streetSmartLayerId": null,
                 "markerSymbols": {
