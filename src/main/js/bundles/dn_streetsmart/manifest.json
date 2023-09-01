@@ -133,7 +133,7 @@
             }
         }
     ],
-    "Components": [
+    "components": [
         {
             "name": "StreetSmartController",
             "provides": [
