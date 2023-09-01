@@ -61,7 +61,7 @@ export default class MeasurementController {
                 heightMeasurement
             );
         }
-        return activeMeasurement.features
+        return activeMeasurement.features;
     }
 
     _getMeasurementGeometry(geometry, wkid) {

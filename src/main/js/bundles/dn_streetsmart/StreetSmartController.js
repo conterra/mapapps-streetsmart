@@ -99,19 +99,17 @@ export default class StreetSmartController {
             overlayDrawDistance: streetSmartProperties.overlayDrawDistance,
             addressSettings: streetSmartProperties.addressSettings
         }).then(() => {
-                console.log("StreetSmart API initialized");
-                const tool = this._tool;
-                if(tool?.active) {
-                    this._openPanorama();
-                }
-            },
-            err => {
-                const msg = err.stack.toString();
-                this._logger.error(msg);
-                this._setProcessingStreetSmart(false);
-                console.error("Api: init: failed. Error: ", err);
+            console.info("StreetSmart API initialized");
+            const tool = this._tool;
+            if (tool?.active) {
+                this._openPanorama();
             }
-        );
+        }, err => {
+            const msg = err.stack.toString();
+            this._logger.error(msg);
+            this._setProcessingStreetSmart(false);
+            console.error("Api: init: failed. Error: ", err);
+        });
     }
 
     _openPanorama(point) {
@@ -237,7 +235,7 @@ export default class StreetSmartController {
     _removeWatcher() {
         this.#streetSmartWatcher.forEach((watcher) => {
             watcher?.removeListener();
-        })
+        });
         this.#streetSmartWatcher = [];
         this.#clickWatcher?.remove();
         this.#clickWatcher = null;
@@ -329,7 +327,7 @@ export default class StreetSmartController {
         this._getPoint(recording).then((point) => {
             this._markerController.drawMarker(point);
             this._centerOnMarker();
-        })
+        });
     }
 
     _getPoint(recording) {
