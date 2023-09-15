@@ -15,6 +15,7 @@
  */
 import Point from "esri/geometry/Point";
 import dijitRegistry from "dijit/registry";
+import async from "apprt-core/async";
 
 export default class StreetSmartController {
 
@@ -40,25 +41,18 @@ export default class StreetSmartController {
     }
 
     activateStreetSmart(event) {
-        this._tool = event?.tool;
-        this._createMarker();
-        this._openPanorama();
-        this._setStreetSmartLayerVisibility(true);
-        this._registerWatcher();
-
-        const templateBorderContainer = dijitRegistry.byId("templateBorderContainer");
-        if (!templateBorderContainer) {
-            const view = this._mapWidgetModel.view;
-            this.#initialViewPadding = view.padding;
-            view.padding.right = view.width / 2;
-            return;
-        }
-        const streetSmartDiv = document.getElementsByClassName("dn_streetsmart__container");
-        if (streetSmartDiv.length) {
-            streetSmartDiv[0].classList.add("active");
-        }
-        templateBorderContainer.resize();
+        this._getView().then(() => {
+            const api = this.#streetSmartAPI;
+            if (api && api.getApiReadyState()) {
+                this._showStreetSmart(event);
+            } else {
+                async(() => {
+                    this.activateStreetSmart(event);
+                }, 500);
+            }
+        });
     }
+
 
     deactivateStreetSmart() {
         this.#firstOpen = true;
@@ -110,6 +104,27 @@ export default class StreetSmartController {
             this._setProcessingStreetSmart(false);
             console.error("Api: init: failed. Error: ", err);
         });
+    }
+
+    _showStreetSmart(event) {
+        this._tool = event?.tool;
+        this._createMarker();
+        this._openPanorama();
+        this._setStreetSmartLayerVisibility(true);
+        this._registerWatcher();
+
+        const templateBorderContainer = dijitRegistry.byId("templateBorderContainer");
+        if (!templateBorderContainer) {
+            const view = this._mapWidgetModel.view;
+            this.#initialViewPadding = view.padding;
+            view.padding.right = view.width / 2;
+            return;
+        }
+        const streetSmartDiv = document.getElementsByClassName("dn_streetsmart__container");
+        if (streetSmartDiv.length) {
+            streetSmartDiv[0].classList.add("active");
+        }
+        templateBorderContainer.resize();
     }
 
     _openPanorama(point) {
@@ -374,6 +389,19 @@ export default class StreetSmartController {
         if (scale) {
             mapWidgetModel.scale = scale;
         }
+    }
+
+    _getView() {
+        const mapWidgetModel = this._mapWidgetModel;
+        return new Promise((resolve, reject) => {
+            if (mapWidgetModel.view) {
+                resolve(mapWidgetModel.view);
+            } else {
+                mapWidgetModel.watch("view", ({ value: view }) => {
+                    resolve(view);
+                });
+            }
+        });
     }
 
 }
