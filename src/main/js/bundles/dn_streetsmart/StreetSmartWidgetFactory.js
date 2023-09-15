@@ -15,7 +15,7 @@
  */
 import IFrameContent from "ct/ui/desktop/IFrameContent";
 
-export default class ChartingDashboardWidgetFactory {
+export default class StreetSmartWidgetFactory {
 
     #iFrameContent = null;
 
