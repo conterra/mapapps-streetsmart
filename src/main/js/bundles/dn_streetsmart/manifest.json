@@ -194,6 +194,8 @@
                     "panoramaViewerMaximizable": false
                 },
                 "streetSmartLayerId": null,
+                "userMapCenterLocation": false,
+                "mapCenterLocationDelay": 250,
                 "markerSymbols": {
                     "normal": {
                         "type": "picture-marker",

@@ -16,6 +16,7 @@
 import Point from "esri/geometry/Point";
 import dijitRegistry from "dijit/registry";
 import async from "apprt-core/async";
+import * as reactiveUtils from "esri/core/reactiveUtils";
 
 export default class StreetSmartController {
 
@@ -24,6 +25,7 @@ export default class StreetSmartController {
     #streetSmartProperties = null;
     #clickWatcher = null;
     #markerWatcher = null;
+    #mapViewWatcher = null;
     #panorama = null;
     #initialViewPadding = null;
     #firstOpen = true;
@@ -238,12 +240,18 @@ export default class StreetSmartController {
     }
 
     _registerWatcher() {
+        const model = this._streetSmartModel;
         const panorama = this.#panorama;
+
         if (panorama) {
             this.#clickWatcher = this._connectOnClickEvent();
             this.#markerWatcher = this._connectOnSketchViewModel();
             this.#streetSmartWatcher.push(this._connectToMeasurementEvent());
             this._connectToStreetSmartAPIEvents(panorama);
+
+            if (model.userMapCenterLocation) {
+                this.#mapViewWatcher = this._connectMapViewWatcher();
+            }
         }
     }
 
@@ -256,6 +264,8 @@ export default class StreetSmartController {
         this.#clickWatcher = null;
         this.#markerWatcher?.remove();
         this.#markerWatcher = null;
+        this.#mapViewWatcher?.remove();
+        this.#mapViewWatcher = null;
     }
 
     _setProcessingStreetSmart(processing) {
@@ -316,6 +326,22 @@ export default class StreetSmartController {
                     this._openPanorama(point);
                 }
             }
+        });
+    }
+
+    _connectMapViewWatcher() {
+        const view = this._mapWidgetModel.view;
+        const model = this._streetSmartModel;
+        const markerController = this._markerController;
+
+        reactiveUtils.watch(() => view.center, () => {
+            clearTimeout(this.lastTimeout);
+            this.lastTimeout = setTimeout(() => {
+                markerController.drawMarker(view.center, null);
+                if (this._tool?.active) {
+                    this._openPanorama(view.center);
+                }
+            }, model.mapCenterLocationDelay);
         });
     }
 

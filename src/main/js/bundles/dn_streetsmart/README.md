@@ -62,6 +62,8 @@ Or you can use the template-streetsmart, which provides its own anchor point for
         "panoramaViewerMaximizable": false
     },
     "streetSmartLayerId": null,
+    "userMapCenterLocation": false,
+    "mapCenterLocationDelay": 250,
     "markerSymbols": {
         "normal": {
             "type": "picture-marker",
