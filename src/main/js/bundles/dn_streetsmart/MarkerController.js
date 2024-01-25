@@ -56,6 +56,10 @@ export default class MarkerController {
         this.#state = "normal";
     }
 
+    disableUpdateOnGraphicClick() {
+        this.#sketchViewModel.updateOnGraphicClick = false;
+    }
+
     activateMarker() {
         this._registerWatcher();
         this._mapWidgetModel.map.reorder(this.#graphicsLayer, 999);
