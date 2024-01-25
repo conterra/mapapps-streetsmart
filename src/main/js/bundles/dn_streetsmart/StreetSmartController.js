@@ -16,7 +16,6 @@
 import Point from "esri/geometry/Point";
 import dijitRegistry from "dijit/registry";
 import async from "apprt-core/async";
-import * as reactiveUtils from "esri/core/reactiveUtils";
 
 export default class StreetSmartController {
 
@@ -29,6 +28,8 @@ export default class StreetSmartController {
     #panorama = null;
     #initialViewPadding = null;
     #firstOpen = true;
+    #mapCenterLocationChanged = false;
+    #streetSmartLocationChanged = false;
 
     activate() {
         this.#streetSmartWatcher = [];
@@ -54,7 +55,6 @@ export default class StreetSmartController {
             }
         });
     }
-
 
     deactivateStreetSmart() {
         this.#firstOpen = true;
@@ -249,7 +249,7 @@ export default class StreetSmartController {
             this.#streetSmartWatcher.push(this._connectToMeasurementEvent());
             this._connectToStreetSmartAPIEvents(panorama);
 
-            if (model.userMapCenterLocation) {
+            if (model.useMapCenterLocation) {
                 this.#mapViewWatcher = this._connectMapViewWatcher();
             }
         }
@@ -334,24 +334,34 @@ export default class StreetSmartController {
         const model = this._streetSmartModel;
         const markerController = this._markerController;
 
-        reactiveUtils.watch(() => view.center, () => {
-            clearTimeout(this.lastTimeout);
-            this.lastTimeout = setTimeout(() => {
+        return view.watch("stationary", (stationary) => {
+            if(stationary && !this.#streetSmartLocationChanged) {
                 markerController.drawMarker(view.center, null);
+                this.#mapCenterLocationChanged = true;
                 if (this._tool?.active) {
                     this._openPanorama(view.center);
                 }
-            }, model.mapCenterLocationDelay);
+                clearTimeout(this.lastTimeout);
+                this.lastTimeout = setTimeout(() => {
+                    this.#mapCenterLocationChanged = false;
+                }, model.mapCenterLocationDelay);
+            }
         });
     }
 
     _connectToStreetSmartAPIEvents(panorama) {
+        const model = this._streetSmartModel;
         this.#streetSmartWatcher.push(panorama.on("VIEW_CHANGE", event => {
             const angle = event.detail.yaw;
             this._markerController.drawMarker(null, angle);
         }));
         this.#streetSmartWatcher.push(panorama.on("RECORDING_CLICK", event => {
             this._updateMarkerPosition(event.detail.recording);
+            this.#streetSmartLocationChanged = true;
+            clearTimeout(this.lastTimeout);
+            this.lastTimeout = setTimeout(() => {
+                this.#streetSmartLocationChanged = false;
+            }, model.mapCenterLocationDelay);
         }));
     }
 
@@ -367,6 +377,10 @@ export default class StreetSmartController {
     _updateMarkerPosition(recording) {
         this._getPoint(recording).then((point) => {
             this._markerController.drawMarker(point);
+
+            if(this.#mapCenterLocationChanged) {
+                return;
+            }
             this._centerOnMarker();
         });
     }
