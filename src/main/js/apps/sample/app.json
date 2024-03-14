@@ -3,10 +3,6 @@
         "title": "${apptitle}"
     },
     "load": {
-        "bundleLocations": [
-            "localbundles",
-            "bundles"
-        ],
         "allowedBundles": [
             "system",
             "console",
@@ -68,7 +64,9 @@
                         }
                     }
                 },
-                "streetSmartLayerId": "test"
+                "streetSmartLayerId": "test",
+                "useMapCenterLocation": false,
+                "mapCenterLocationDelay": 500
             }
         },
         "banner": {
@@ -639,8 +637,7 @@
         "toolrules": {
             "ToolActiveStateManager": {
                 "activateOnStartToolIds": [
-                    "IMPRINT_Imprint_CustomInfoTool",
-                    "streetSmartToggleTool"
+                    "IMPRINT_Imprint_CustomInfoTool"
                 ]
             }
         }
