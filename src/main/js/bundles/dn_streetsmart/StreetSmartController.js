@@ -25,7 +25,6 @@ export default class StreetSmartController {
     #clickWatcher = null;
     #markerWatcher = null;
     #mapViewCenterWatcher = null;
-    #mapViewStaticWatcher = null;
     #panorama = null;
     #initialViewPadding = null;
     #firstOpen = true;
@@ -266,7 +265,6 @@ export default class StreetSmartController {
 
             if (model.useMapCenterLocation) {
                 this.#mapViewCenterWatcher = this._connectMapViewCenterWatcher();
-                this.#mapViewStaticWatcher = this._connectMapViewStaticWatcher();
             }
         }
     }
@@ -282,8 +280,6 @@ export default class StreetSmartController {
         this.#markerWatcher = null;
         this.#mapViewCenterWatcher?.remove();
         this.#mapViewCenterWatcher = null;
-        this.#mapViewStaticWatcher?.remove();
-        this.#mapViewStaticWatcher = null;
     }
 
     _setProcessingStreetSmart(processing) {
@@ -359,24 +355,13 @@ export default class StreetSmartController {
                 clearTimeout(this.lastTimeout);
                 this.lastTimeout = setTimeout(() => {
                     this.#mapCenterLocationChanged = false;
-                }, model.mapCenterLocationDelay);
-            }
-        });
-    }
-
-    _connectMapViewStaticWatcher() {
-        const view = this._mapWidgetModel.view;
-        const model = this._streetSmartModel;
-
-        return view.watch("stationary", (stationary) => {
-            if(stationary && !this.#streetSmartLocationChanged) {
-                this.#mapCenterLocationChanged = true;
-                if (this._tool?.active) {
+                    this.#streetSmartLocationChanged = true;
                     this._openPanorama(view.center);
-                }
+                }, model.mapCenterLocationDelay);
+            } else if (this.#streetSmartLocationChanged) {
                 clearTimeout(this.lastTimeout);
                 this.lastTimeout = setTimeout(() => {
-                    this.#mapCenterLocationChanged = false;
+                    this.#streetSmartLocationChanged = false;
                 }, model.mapCenterLocationDelay);
             }
         });
