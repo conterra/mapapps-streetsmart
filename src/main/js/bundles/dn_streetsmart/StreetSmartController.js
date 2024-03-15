@@ -24,7 +24,7 @@ export default class StreetSmartController {
     #streetSmartProperties = null;
     #clickWatcher = null;
     #markerWatcher = null;
-    #mapViewWatcher = null;
+    #mapViewCenterWatcher = null;
     #panorama = null;
     #initialViewPadding = null;
     #firstOpen = true;
@@ -133,8 +133,10 @@ export default class StreetSmartController {
         if (!this.#streetSmartAPI) {
             return;
         }
+
+        const mapWidgetModel = this._mapWidgetModel;
+
         if (!point) {
-            const mapWidgetModel = this._mapWidgetModel;
             point = mapWidgetModel.center;
         }
         this._getCoordinates(point).then((coordinates) => {
@@ -153,9 +155,21 @@ export default class StreetSmartController {
             }).then(
                 result => {
                     if (result.length) {
+                        const model = this._streetSmartModel;
                         const panorama = this.#panorama = result[0];
                         const recording = panorama.props.recording;
                         this._updateMarkerPosition(recording);
+                        if (model.useMapCenterLocation) {
+
+                            const view = mapWidgetModel.view;
+                            this._getPoint(recording).then(point => {
+                                const center = view.center;
+                                if (center.x !== point.x || center.y !== point.y) {
+                                    view.center = point;
+                                }
+                            });
+
+                        }
                         if (this.#firstOpen) {
                             this.#firstOpen = false;
                             this._registerWatcher();
@@ -250,7 +264,7 @@ export default class StreetSmartController {
             this._connectToStreetSmartAPIEvents(panorama);
 
             if (model.useMapCenterLocation) {
-                this.#mapViewWatcher = this._connectMapViewWatcher();
+                this.#mapViewCenterWatcher = this._connectMapViewCenterWatcher();
             }
         }
     }
@@ -264,8 +278,8 @@ export default class StreetSmartController {
         this.#clickWatcher = null;
         this.#markerWatcher?.remove();
         this.#markerWatcher = null;
-        this.#mapViewWatcher?.remove();
-        this.#mapViewWatcher = null;
+        this.#mapViewCenterWatcher?.remove();
+        this.#mapViewCenterWatcher = null;
     }
 
     _setProcessingStreetSmart(processing) {
@@ -329,21 +343,25 @@ export default class StreetSmartController {
         });
     }
 
-    _connectMapViewWatcher() {
+    _connectMapViewCenterWatcher() {
         const view = this._mapWidgetModel.view;
         const model = this._streetSmartModel;
         const markerController = this._markerController;
 
-        return view.watch("stationary", (stationary) => {
-            if(stationary && !this.#streetSmartLocationChanged) {
+        return view.watch("center", (center) => {
+            if(center && !this.#streetSmartLocationChanged) {
                 markerController.drawMarker(view.center, null);
                 this.#mapCenterLocationChanged = true;
-                if (this._tool?.active) {
-                    this._openPanorama(view.center);
-                }
                 clearTimeout(this.lastTimeout);
                 this.lastTimeout = setTimeout(() => {
                     this.#mapCenterLocationChanged = false;
+                    this.#streetSmartLocationChanged = true;
+                    this._openPanorama(view.center);
+                }, model.mapCenterLocationDelay);
+            } else if (this.#streetSmartLocationChanged) {
+                clearTimeout(this.lastTimeout);
+                this.lastTimeout = setTimeout(() => {
+                    this.#streetSmartLocationChanged = false;
                 }, model.mapCenterLocationDelay);
             }
         });
