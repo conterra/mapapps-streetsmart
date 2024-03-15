@@ -154,13 +154,15 @@ export default class StreetSmartController {
                 }
             }).then(
                 result => {
+                    if (!this._tool?.active) {
+                        return;
+                    }
                     if (result.length) {
                         const model = this._streetSmartModel;
                         const panorama = this.#panorama = result[0];
                         const recording = panorama.props.recording;
                         this._updateMarkerPosition(recording);
                         if (model.useMapCenterLocation) {
-
                             const view = mapWidgetModel.view;
                             this._getPoint(recording).then(point => {
                                 const center = view.center;
@@ -168,7 +170,6 @@ export default class StreetSmartController {
                                     view.center = point;
                                 }
                             });
-
                         }
                         if (this.#firstOpen) {
                             this.#firstOpen = false;
@@ -349,8 +350,11 @@ export default class StreetSmartController {
         const markerController = this._markerController;
 
         return view.watch("center", (center) => {
-            if(center && !this.#streetSmartLocationChanged) {
-                markerController.drawMarker(view.center, null);
+            if (center && !this.#streetSmartLocationChanged) {
+                if (this._tool?.active) {
+                    markerController.drawMarker(view.center, null);
+                }
+
                 this.#mapCenterLocationChanged = true;
                 clearTimeout(this.lastTimeout);
                 this.lastTimeout = setTimeout(() => {
