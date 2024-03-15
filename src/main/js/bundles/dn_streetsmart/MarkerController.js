@@ -71,6 +71,12 @@ export default class MarkerController {
     }
 
     drawMarker(point, angle) {
+        if (this.#markerGraphic && point) {
+            const gm = this.#markerGraphic;
+            if (gm.geometry.x === point.x && gm.geometry.y === point.y) {
+                return;
+            }
+        }
         if (!this.#markerGraphic) {
             this.#markerGraphic = this._addMarkerToGraphicsLayer(point);
         }
@@ -82,6 +88,7 @@ export default class MarkerController {
             this.#angle = angle;
         }
         markerGraphic.symbol = this._getSymbol(this.#state, angle);
+        console.info("draw");
     }
 
     _removeMarker() {
