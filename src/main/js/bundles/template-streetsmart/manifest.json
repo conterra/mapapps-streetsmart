@@ -1,6 +1,6 @@
 {
 	"name": "template-streetsmart",
-	"version": "1.5.0",
+	"version": "1.5.1-SNAPSHOT",
 	"title": "Streetsmart Template",
 	"description": "This bundle provides the 'streetsmart' layout-template with responsive capabilities and predefined anchor-points.",
 	"vendor": "con terra GmbH",
