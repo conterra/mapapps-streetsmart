@@ -196,6 +196,7 @@
                 "streetSmartLayerId": null,
                 "useMapCenterLocation": false,
                 "mapCenterLocationDelay": 250,
+                "minScale": null,
                 "markerSymbols": {
                     "normal": {
                         "type": "picture-marker",

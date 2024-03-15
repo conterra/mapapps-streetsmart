@@ -71,6 +71,12 @@ export default class MarkerController {
     }
 
     drawMarker(point, angle) {
+        if (this.#markerGraphic && point) {
+            const mg = this.#markerGraphic;
+            if (mg.geometry.x === point.x && mg.geometry.y === point.y) {
+                return;
+            }
+        }
         if (!this.#markerGraphic) {
             this.#markerGraphic = this._addMarkerToGraphicsLayer(point);
         }
