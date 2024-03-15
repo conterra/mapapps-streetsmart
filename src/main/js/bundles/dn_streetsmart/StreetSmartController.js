@@ -48,7 +48,7 @@ export default class StreetSmartController {
 
         this._getView().then((view) => {
             if (minScale) {
-                view.constraints = { minScale: minScale };
+                view.constraints.minScale = minScale;
             }
 
             const api = this.#streetSmartAPI;
@@ -74,7 +74,7 @@ export default class StreetSmartController {
         const minScale = this._streetSmartModel.minScale;
         if (minScale) {
             this._getView().then((view) => {
-                view.constraints = { minScale: 0 };
+                view.constraints.minScale = 0;
             });
         }
 
