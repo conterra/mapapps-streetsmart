@@ -44,7 +44,13 @@ export default class StreetSmartController {
     }
 
     activateStreetSmart(event) {
-        this._getView().then(() => {
+        const minScale = this._streetSmartModel.minScale;
+
+        this._getView().then((view) => {
+            if (minScale) {
+                view.constraints = { minScale: minScale };
+            }
+
             const api = this.#streetSmartAPI;
             if (api && api.getApiReadyState()) {
                 this._showStreetSmart(event);
@@ -64,6 +70,13 @@ export default class StreetSmartController {
 
         this._measurementController.removeMeasurements();
         this._markerController.deactivateMarker();
+
+        const minScale = this._streetSmartModel.minScale;
+        if (minScale) {
+            this._getView().then((view) => {
+                view.constraints = { minScale: 0 };
+            });
+        }
 
         const templateBorderContainer = dijitRegistry.byId("templateBorderContainer");
         if (!templateBorderContainer) {

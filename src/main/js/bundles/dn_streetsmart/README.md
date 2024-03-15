@@ -64,6 +64,7 @@ Or you can use the template-streetsmart, which provides its own anchor point for
     "streetSmartLayerId": null,
     "useMapCenterLocation": false,
     "mapCenterLocationDelay": 250,
+    "minScale": null,
     "markerSymbols": {
         "normal": {
             "type": "picture-marker",
