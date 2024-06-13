@@ -33,9 +33,6 @@
             "dn_streetsmart",
             "template-streetsmart"
         ],
-        "require": [
-            "${app}.app"
-        ],
         "i18n": [
             "bundle"
         ]
