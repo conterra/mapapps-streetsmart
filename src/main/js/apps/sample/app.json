@@ -515,27 +515,14 @@
                 "view": {
                     "viewmode": "2D",
                     "center": {
-                        "x": 359720,
-                        "y": 5647699,
+                        "x": 483148.411913,
+                        "y": 5728813.915292,
                         "spatialReference": {
                             "wkid": 25832,
                             "latestWkid": 25832
                         }
                     },
-                    "scale": 2500,
-                    "constraints": {
-                        "geometry": {
-                            "type": "extent",
-                            "xmin": 359392.08,
-                            "ymin": 5647509.66,
-                            "xmax": 359856.42,
-                            "ymax": 5647939.72,
-                            "spatialReference": {
-                                "wkid": 25832,
-                                "latestWkid": 25832
-                            }
-                        }
-                    }
+                    "scale": 2500
                 }
             }
         },
