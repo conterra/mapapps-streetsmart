@@ -1,23 +1,25 @@
+[![devnet-bundle-snapshot](https://github.com/conterra/mapapps-streetsmart/actions/workflows/devnet-bundle-snapshot.yml/badge.svg)](https://github.com/conterra/mapapps-streetsmart/actions/workflows/devnet-bundle-snapshot.yml)
+![Static Badge](https://img.shields.io/badge/tested_for_map.apps-4.19.1-%20?labelColor=%233E464F&color=%232FC050)
 # Street Smart Bundle
 The Street Smart Bundle uses the Cyclorama functionality to allow the user to select a location on the map and see Street Smart images for that location in a separated window.
 
-## Build Status
-[![devnet-bundle-snapshot](https://github.com/conterra/mapapps-streetsmart/actions/workflows/devnet-bundle-snapshot.yml/badge.svg)](https://github.com/conterra/mapapps-streetsmart/actions/workflows/devnet-bundle-snapshot.yml)
+## Sample app
+Due to licensing demos are only available on demand. Please contact support@conterra.de to make an appointment.
 
-## Installation Guide
-**Requirement: map.apps 4.7.0**
+## Installation guide
+1. Add the bundle `dn_streetsmart` to your app.
+2. Set your streetsmart credentials in the app.json.
 
-[dn_streetsmart Documentation](https://github.com/conterra/mapapps-streetsmart/tree/master/src/main/js/bundles/dn_streetsmart)
+## Development guide
+Run the following commands from the project root directory to start a local development server:
 
-## Development Guide
-### Define the mapapps remote base
-Before you can run the project you have to define the mapapps.remote.base property in the pom.xml-file:
-`<mapapps.remote.base>http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%</mapapps.remote.base>`
+```bash
+# install all required node modules
+$ mvn initialize
 
-### Other methods to to define the mapapps.remote.base property.
-1. Goal parameters
-`mvn install -Dmapapps.remote.base=http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%`
+# start dev server
+$ mvn compile -Denv=dev -Pinclude-mapapps-deps
 
-2. Build properties
-Change the mapapps.remote.base in the build.properties file and run:
-`mvn install -Denv=dev -Dlocal.configfile=%ABSOLUTEPATHTOPROJECTROOT%/build.properties`
+# run unit tests
+$ mvn test -P run-js-tests,include-mapapps-deps
+```
