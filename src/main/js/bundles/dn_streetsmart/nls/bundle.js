@@ -27,6 +27,14 @@ export default {
                 area: "Area",
                 length: "Length",
                 height: "Height"
+            },
+            tooltips: {
+                mapCenter: "Switch to Map Center Mode",
+                mousePosition: "Switch to Mouse Mode"
+            },
+            titles: {
+                mapCenter: "Switch to Map Center Mode",
+                mousePosition: "Switch to Mouse Mode"
             }
         }
     }),

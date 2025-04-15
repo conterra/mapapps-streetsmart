@@ -168,6 +168,12 @@
                 {
                     "name": "_appCtx",
                     "providing": "ct.framework.api.ApplicationContext"
+                },
+                {
+                    "name": "tool",
+                    "providing": "ct.tools.Tool",
+                    "filter": "(id=streetSmartModeToggleTool)",
+                    "cardinality": "0..1"
                 }
             ]
         },
@@ -195,7 +201,8 @@
                 },
                 "streetSmartLayerId": null,
                 "useMapCenterLocation": false,
-                "mapCenterLocationDelay": 250,
+                "mapCenterLocationDelay": 100,
+                "closeOnNoData": true,
                 "minScale": null,
                 "markerSymbols": {
                     "normal": {
@@ -347,7 +354,38 @@
                 "togglable": true,
                 "iconClass": "icon-street-view",
                 "activateHandler": "activateStreetSmart",
-                "deactivateHandler": "deactivateStreetSmart"
+                "deactivateHandler": "deactivateStreetSmart",
+                "rules": {
+                    "noGroup": true
+                }
+            },
+            "references": [
+                {
+                    "name": "handlerScope",
+                    "providing": "dn_streetsmart.StreetSmartController"
+                }
+            ]
+        },
+        {
+            "name": "StreetSmartModeToggleTool",
+            "impl": "ct/tools/Tool",
+            "provides": [
+                "ct.tools.Tool",
+                "dn_streetsmart.StreetSmartModeToggleTool"
+            ],
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "streetSmartModeToggleTool",
+                "title": "${tool.title}",
+                "tooltip": "${tool.tooltip}",
+                "toolRole": "toolset",
+                "iconClass": "icon-street-view",
+                "togglable": false,
+                "visibility": false,
+                "clickHandler": "toggleStreetSmartMode",
+                "rules": {
+                    "noGroup": true
+                }
             },
             "references": [
                 {
