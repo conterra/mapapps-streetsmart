@@ -26,6 +26,14 @@ export default {
             area: "Fl\u00E4che",
             length: "L\u00E4nge",
             height: "H\u00F6he"
+        },
+        tooltips: {
+            mapCenter: "Kartenmitte verwenden",
+            mousePosition: "Maus verwenden"
+        },
+        titles: {
+            mapCenter: "Zum Kartenmitte Modus wechseln",
+            mousePosition: "Zum Maus Modus wechseln"
         }
     }
 };
