@@ -203,6 +203,7 @@
                 "useMapCenterLocation": false,
                 "mapCenterLocationDelay": 100,
                 "closeOnNoData": true,
+                "moveViewToMeasurement": true,
                 "minScale": null,
                 "markerSymbols": {
                     "normal": {
