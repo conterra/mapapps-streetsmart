@@ -62,7 +62,9 @@
                     }
                 },
                 "streetSmartLayerId": "test",
-                "useMapCenterLocation": false,
+                "useMapCenterLocation": true,
+                "closeOnNoData": false,
+                "moveViewToMeasurement": true,
                 "mapCenterLocationDelay": 500
             }
         },
@@ -593,6 +595,8 @@
                             "zoomOutTool",
                             "compassTool",
                             "restoreInitialViewTool",
+                            "distanceMeasurement2DToggleTool",
+                            "areaMeasurement2DToggleTool",
                             "streetSmartToggleTool"
                         ],
                         "registerWidget": {
@@ -605,7 +609,8 @@
                     {
                         "id": "label_tools",
                         "tools": [
-                            "streetSmartToggleTool"
+                            "streetSmartToggleTool",
+                            "streetSmartModeToggleTool"
                         ],
                         "container": "map",
                         "position": {
