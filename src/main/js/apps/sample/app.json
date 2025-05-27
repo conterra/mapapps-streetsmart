@@ -64,7 +64,6 @@
                 "streetSmartLayerId": "test",
                 "useMapCenterLocation": true,
                 "closeOnNoData": false,
-                "moveViewToMeasurement": true,
                 "mapCenterLocationDelay": 500
             }
         },
@@ -595,8 +594,6 @@
                             "zoomOutTool",
                             "compassTool",
                             "restoreInitialViewTool",
-                            "distanceMeasurement2DToggleTool",
-                            "areaMeasurement2DToggleTool",
                             "streetSmartToggleTool"
                         ],
                         "registerWidget": {

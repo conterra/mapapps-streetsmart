@@ -408,11 +408,9 @@ export default class StreetSmartController {
     }
 
     _connectToMeasurementEvent() {
-        const model = this._streetSmartModel;
-
         return this.#streetSmartAPI.on("MEASUREMENT_CHANGED", event => {
             const measurementFeatures = this._measurementController.drawMeasurement(event);
-            if (model?.moveViewToMeasurement && measurementFeatures?.length === 1) {
+            if (measurementFeatures?.length === 1) {
                 this._centerOnMarker(250);
             }
         });
@@ -422,7 +420,7 @@ export default class StreetSmartController {
         this._getPoint(recording).then((point) => {
             this._markerController.drawMarker(point);
 
-            if (this.#mapCenterLocationChanged) {
+            if(this.#mapCenterLocationChanged) {
                 return;
             }
             this._centerOnMarker();
@@ -494,7 +492,7 @@ export default class StreetSmartController {
     }
 
     toggleStreetSmartMode() {
-        this.setStreetSmartMode(!this._streetSmartModel.useMapCenterLocation);
+        this.setStreetSmartMode(! this._streetSmartModel.useMapCenterLocation);
     }
 
     setStreetSmartMode(mode) {
