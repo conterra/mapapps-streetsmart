@@ -9,9 +9,10 @@ The Street Smart Bundle uses the Cyclorama functionality to allow the user to se
 
 To make the functions of this bundle available to the user, the following tool can be added to a toolset:
 
-| Tool ID               | Component             | Description              |
-|-----------------------|-----------------------|--------------------------|
-| streetSmartToggleTool | StreetSmartToggleTool | Show or hide the widget. |
+| Tool ID                   | Component                 | Description                             |
+|---------------------------|---------------------------|-----------------------------------------|
+| streetSmartToggleTool     | StreetSmartToggleTool     | Show or hide the widget.                |
+| streetSmartModeToggleTool | StreetSmartModeToggleTool | Toggle between MapCenter and Edit mode. |
 
 ## Configuration Reference
 
@@ -64,6 +65,7 @@ Or you can use the template-streetsmart, which provides its own anchor point for
     "streetSmartLayerId": null,
     "useMapCenterLocation": false,
     "mapCenterLocationDelay": 250,
+    "closeOnNoData": true,
     "minScale": null,
     "markerSymbols": {
         "normal": {

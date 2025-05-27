@@ -62,7 +62,8 @@
                     }
                 },
                 "streetSmartLayerId": "test",
-                "useMapCenterLocation": false,
+                "useMapCenterLocation": true,
+                "closeOnNoData": false,
                 "mapCenterLocationDelay": 500
             }
         },
@@ -605,7 +606,8 @@
                     {
                         "id": "label_tools",
                         "tools": [
-                            "streetSmartToggleTool"
+                            "streetSmartToggleTool",
+                            "streetSmartModeToggleTool"
                         ],
                         "container": "map",
                         "position": {
