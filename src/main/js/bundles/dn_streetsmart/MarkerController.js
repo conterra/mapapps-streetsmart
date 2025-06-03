@@ -84,7 +84,7 @@ export default class MarkerController {
         if (point) {
             markerGraphic.geometry = point;
         }
-        if(angle) {
+        if (angle !== undefined && angle !== null) {
             this.#angle = angle;
         }
         markerGraphic.symbol = this._getSymbol(this.#state, angle);
@@ -117,7 +117,7 @@ export default class MarkerController {
     _getSymbol(state, angle) {
         const symbols = this._streetSmartModel.markerSymbols;
         const symbol = symbols[state];
-        if (angle) {
+        if (angle !== undefined && angle !== null) {
             symbol.angle = angle;
         }
         return symbol;
@@ -129,7 +129,7 @@ export default class MarkerController {
             if (mapWidgetModel.view) {
                 resolve(mapWidgetModel.view);
             } else {
-                mapWidgetModel.watch("view", ({value: view}) => {
+                mapWidgetModel.watch("view", ({ value: view }) => {
                     resolve(view);
                 });
             }
@@ -155,7 +155,7 @@ export default class MarkerController {
     _addSketchViewModelWatcher() {
         const sketchViewModel = this.#sketchViewModel;
         this.#sketchViewModelWatcher = sketchViewModel.on("update", evt => {
-            if(!this.#markerGraphic) {
+            if (!this.#markerGraphic) {
                 return;
             }
             if (evt.state === "start") {
@@ -184,7 +184,7 @@ export default class MarkerController {
                     for (let i = 0; i < results.length; i++) {
                         // Check if we are already editing a graphic
                         if (results[i].graphic.layer && (results[i].graphic.layer.id === "streetSmartMarkerGraphicLayer"
-                        || results[i].graphic.layer.id === streetSmartLayerId)) {
+                            || results[i].graphic.layer.id === streetSmartLayerId)) {
                             view.cursor = "pointer";
                             break;
                         } else {

@@ -409,6 +409,8 @@ export default class StreetSmartController {
 
     _connectToMeasurementEvent() {
         return this.#streetSmartAPI.on("MEASUREMENT_CHANGED", event => {
+            if (this._streetSmartModel.useMapCenterLocation) return;
+
             const measurementFeatures = this._measurementController.drawMeasurement(event);
             if (measurementFeatures?.length === 1) {
                 this._centerOnMarker(250);
@@ -418,7 +420,7 @@ export default class StreetSmartController {
 
     _updateMarkerPosition(recording) {
         this._getPoint(recording).then((point) => {
-            this._markerController.drawMarker(point);
+            this._markerController.drawMarker(point, null);
 
             if(this.#mapCenterLocationChanged) {
                 return;
