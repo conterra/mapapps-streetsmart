@@ -203,7 +203,7 @@
                 "useMapCenterLocation": false,
                 "mapCenterLocationDelay": 100,
                 "closeOnNoData": true,
-                "initialViewScale": 250,
+                "initialViewScale": 2500,
                 "minScale": null,
                 "markerSymbols": {
                     "normal": {
