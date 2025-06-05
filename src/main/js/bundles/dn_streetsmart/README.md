@@ -66,6 +66,7 @@ Or you can use the template-streetsmart, which provides its own anchor point for
     "useMapCenterLocation": false,
     "mapCenterLocationDelay": 250,
     "closeOnNoData": true,
+    "initialViewScale": 2500,
     "minScale": null,
     "markerSymbols": {
         "normal": {

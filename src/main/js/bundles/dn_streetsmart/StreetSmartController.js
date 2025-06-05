@@ -311,8 +311,10 @@ export default class StreetSmartController {
     }
 
     _createMarker() {
+        const model = this._streetSmartModel;
         const mapWidgetModel = this._mapWidgetModel;
-        mapWidgetModel.view.scale = 2500;
+
+        mapWidgetModel.view.scale = model.initialViewScale || 2500;
         const center = mapWidgetModel.center;
 
         const markerController = this._markerController;
