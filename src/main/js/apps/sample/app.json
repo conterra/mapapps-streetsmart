@@ -46,9 +46,9 @@
         "dn_streetsmart": {
             "Config": {
                 "streetSmartProperties": {
-                    "apiKey": "",
-                    "username": "",
-                    "password": "",
+                    "apiKey": "irApyf0duLo1Gj8RWzwpuLUFyzcROLANyzMNufMxqfQV6DIR6H0xqLsVOLsRijUR",
+                    "username": "mapapps",
+                    "password": "bpeyw4j7",
                     "srs": "EPSG:25832",
                     "locale": "de",
                     "overlayDrawDistance": 30,
