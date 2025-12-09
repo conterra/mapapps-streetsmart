@@ -8,12 +8,12 @@
         "streetsmart"
     ],
     "icon": {},
-    "license": {},
     "productName": "devnet-mapapps-streetsmart",
     "dependencies": {
-        "coordinatetransformer": "^4.7.0",
-        "geojson": "^4.7.0",
-        "highlights": "^4.7.0"
+        "@arcgis/core": "^4.33.0",
+        "coordinatetransformer": "^4.20.0",
+        "geojson": "^4.20.0",
+        "highlights": "^4.20.0"
     },
     "layout-widgets": [
         {
