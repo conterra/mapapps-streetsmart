@@ -208,19 +208,19 @@
                 "markerSymbols": {
                     "normal": {
                         "type": "picture-marker",
-                        "url": "resource('./images/green/streetViewMarker.png')",
+                        // "url": "resource('./images/green/streetViewMarker.png')",
                         "width": 30,
                         "height": 30
                     },
                     "dragging": {
                         "type": "picture-marker",
-                        "url": "resource('./images/green/streetViewMarkerDragging.png')",
+                        // "url": "resource('./images/green/streetViewMarkerDragging.png')",
                         "width": 30,
                         "height": 30
                     },
                     "available": {
                         "type": "picture-marker",
-                        "url": "resource('./images/green/streetViewMarkerAvailable.png')",
+                        // "url": "resource('./images/green/streetViewMarkerAvailable.png')",
                         "width": 30,
                         "height": 30
                     }
