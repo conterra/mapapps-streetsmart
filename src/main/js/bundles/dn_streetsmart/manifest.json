@@ -1,6 +1,6 @@
 {
     "name": "dn_streetsmart",
-    "version": "1.8.1",
+    "version": "1.8.2-SNAPSHOT",
     "title": "${bundleTitle}",
     "description": "${bundleDescription}",
     "vendor": "con terra GmbH",
