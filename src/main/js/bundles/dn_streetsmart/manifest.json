@@ -11,6 +11,9 @@
     "productName": "devnet-mapapps-streetsmart",
     "dependencies": {
         "@arcgis/core": "^4.33.0",
+        "apprt-core": "^4.20.0",
+        "ct": "^4.20.0",
+        "dijit": "^1.0.0",
         "coordinatetransformer": "^4.20.0",
         "geojson": "^4.20.0",
         "highlights": "^4.20.0"
