@@ -4,6 +4,7 @@
 # Street Smart Bundle
 The Street Smart Bundle uses the Cyclorama functionality to allow the user to select a location on the map and see Street Smart images for that location in a separated window.
 
+temp 
 ## Sample app
 https://demos.conterra.de/mapapps/resources/apps/internal_demo_streetsmart/index.html
 
