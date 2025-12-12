@@ -293,10 +293,10 @@
                 "dijit.Widget"
             ],
             "instanceFactory": true,
-            "properties": {
-                "widgetRole": "streetSmartWidget",
-                "iFrameUrl": "resource('./template/streetsmart.html')"
-            },
+            // "properties": {
+            //     "widgetRole": "streetSmartWidget",
+            //     "iFrameUrl": "resource('./template/streetsmart.html')"
+            // },
             "references": [
                 {
                     "name": "_streetSmartController",
