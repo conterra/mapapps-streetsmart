@@ -290,23 +290,23 @@
                 }
             }
         },
-        // {
-        //     "name": "StreetSmartWidgetFactory",
-        //     "provides": [
-        //         "dijit.Widget"
-        //     ],
-        //     "instanceFactory": true,
-        //     "properties": {
-        //         "widgetRole": "streetSmartWidget",
-        //         "iFrameUrl": "resource('./template/streetsmart.html')"
-        //     },
-        //     "references": [
-        //         {
-        //             "name": "_streetSmartController",
-        //             "providing": "dn_streetsmart.StreetSmartController"
-        //         }
-        //     ]
-        // },
+        {
+            "name": "StreetSmartWidgetFactory",
+            "provides": [
+                "dijit.Widget"
+            ],
+            "instanceFactory": true,
+            "properties": {
+                "widgetRole": "streetSmartWidget",
+                "iFrameUrl": "resource('./template/streetsmart.html')"
+            },
+            "references": [
+                {
+                    "name": "_streetSmartController",
+                    "providing": "dn_streetsmart.StreetSmartController"
+                }
+            ]
+        },
         {
             "name": "MarkerController",
             "provides": [
