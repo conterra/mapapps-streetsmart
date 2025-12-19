@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 export { StreetSmartController } from "./StreetSmartController";
-export { StreetSmartWidgetFactory } from "./StreetSmartWidgetFactory";
+// export { StreetSmartWidgetFactory } from "./StreetSmartWidgetFactory";
 export { StreetSmartModel } from "./StreetSmartModel";
 export { MarkerController } from "./MarkerController";
 export { MeasurementController } from "./MeasurementController";
